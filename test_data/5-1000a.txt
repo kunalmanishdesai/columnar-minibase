@@ -1,0 +1,1003 @@
+A:char(25)	B:char(25)	C:int	D:int	E:char(25)
+Kansas	Singapore	9	95	Flamingo
+Alabama	Taiwan	2	57	Peafowl
+Utah	Maryland	8	26	Goose
+South Carolina	Saudi_Arabia	3	42	Carcharhinus
+North Dakota	Netherlands	2	43	Swan
+South Carolina	Ukraine	8	4	Angel_shark
+Oregon	Rhode_Island	8	95	Jackal
+Alaska	North_Carolina	1	85	Hemiscyllium
+Kentucky	Barbados	9	22	Fox
+Pennsylvania	Illinois	7	2	Gazelle
+Virginia	COSTA_RICA	0	59	Columbidae
+Nevada	California	0	41	Donkey
+Alaska	Ethiopia	1	64	Parascyllium
+Missouri	Louisiana	5	55	Pristiophorus
+California	Denmark	1	40	Peafowl
+Georgia	TRINIDAD_AND_TOBAGO	6	37	Donkey
+West Virginia	Italy	1	27	Scoliodon
+Oklahoma	Finland	4	93	Polecat
+Maryland	TRINIDAD_AND_TOBAGO	8	45	Prionace_glauca
+Wisconsin	Malawi	5	14	Swan
+Vermont	Tanzania	9	54	Quail
+Alabama	Massachusetts	6	37	Isurus
+New Hampshire	Finland	8	74	Rhizoprionodon
+Alaska	Namibia	2	25	Black_panther
+Missouri	France	3	94	Moose
+Florida	Texas	1	3	Parmaturus
+Texas	Namibia	2	30	Hawk
+Ohio	Hawaii	5	15	Swallow
+New Hampshire	Finland	4	88	Badger
+Indiana	Washington	5	14	Carcharhiniformes
+Maine	Michigan	1	77	Nightingale
+Arizona	TRINIDAD_AND_TOBAGO	0	59	Black_panther
+Arkansas	Singapore	2	71	Carcharhiniformes
+New Hampshire	Namibia	2	55	Wren
+Massachusetts	Oregon	2	86	Manatee
+Massachusetts	Michigan	0	6	Triakis
+South Dakota	Slovenia	1	65	Pygmy_Shark
+California	Thailand	2	42	Hornet
+West Virginia	Illinois	4	42	Guanaco
+Nebraska	Greece	9	30	Coyote
+Michigan	Alaska	0	78	Coccinellidae
+North Carolina	Spain	4	88	Donkey
+Illinois	Florida	0	88	Hemitriakis
+Wyoming	Guatemala	4	38	Pelican
+New York	Uruguay	3	21	Chamois
+Arkansas	Texas	9	2	Wren
+Colorado	Malawi	0	39	Orectolobus
+Pennsylvania	Sudan	7	94	Sawshark
+Arizona	Ireland	8	84	Black_panther
+Missouri	Romania	9	25	Louse
+Texas	Spain	9	99	Goose
+California	Ireland	6	58	Negaprion
+Utah	Thailand	4	16	Ram
+Vermont	Arizona	3	60	Jackal
+Utah	Grenada	6	33	Columbidae
+Louisiana	Finland	3	11	Peafowl
+Mississippi	Dominica	0	23	Coccinellidae
+Alaska	Guatemala	9	94	Nightingale
+Michigan	Slovakia	1	1	Parascyllium
+New Mexico	Switzerland	2	82	Echinorhinus
+New York	WESTERN_SAHARA	7	65	Ostrich
+Michigan	France	6	99	Human
+Georgia	Uzbekistan	8	71	Quail
+Louisiana	Monaco	7	33	American_Bison
+Oregon	Rhode_Island	2	55	Cormorant
+Ohio	Uzbekistan	9	11	Bison
+Alaska	Malaysia	0	55	Whale_Shark
+Massachusetts	Nebraska	2	88	Gerbil
+Illinois	New_Mexico	7	39	Carcharhinus
+Indiana	New_Jersey	7	14	Squaliformes
+Maine	Wisconsin	1	21	Wombat
+Virginia	Romania	0	27	Isurus
+Minnesota	Oregon	7	0	Swallow
+South Carolina	Sudan	5	83	Angel_shark
+Arizona	Slovakia	2	11	Columbidae
+Colorado	Rhode_Island	2	78	Giraffe
+North Dakota	Dominica	3	73	Rhinoceros
+Tennessee	Namibia	1	40	Isogomphodon
+Iowa	Madagascar	3	31	Gerbil
+South Carolina	Kiribati	4	32	Otter
+Minnesota	Tennessee	5	72	Hyena
+Connecticut	Nigeria	4	94	Parmaturus
+Virginia	Cyprus	3	20	Chiloscyllium
+Virginia	Denmark	6	18	Polecat
+Oklahoma	EQUATORIAL_GUINEA	0	83	Sheep
+Illinois	Malaysia	4	78	Hawk
+Colorado	Virginia	5	65	Whale_Shark
+Wisconsin	Georgia	0	91	Whale_Shark
+Colorado	Alabama	6	14	Triaenodon
+Oregon	Ecuador	8	83	Pony
+New Mexico	Virginia	8	96	Flamingo
+Virginia	Spain	6	12	Poroderma
+North Carolina	Kiribati	0	11	Polecat
+New Mexico	Namibia	7	8	Flamingo
+Oklahoma	Slovenia	8	14	Hemitriakis
+Oregon	Ireland	5	90	Hemiscyllium
+Ohio	Texas	3	16	Orectolobus
+Wisconsin	Oregon	1	59	Magpie
+Alaska	Colombia	1	37	Hemitriakis
+Rhode Island	Sweden	0	22	Peafowl
+Arkansas	Madagascar	8	25	Cheetah
+Missouri	Vatican_City	2	3	Reindeer
+Ohio	WESTERN_SAHARA	2	40	Nightingale
+Maine	Denmark	6	96	Gorilla
+Texas	Denmark	6	18	Sheep
+Michigan	EL_SALVADOR	1	17	Chamois
+Iowa	Guatemala	2	81	Rhinoceros
+Idaho	Zambia	7	1	Human
+Idaho	Monaco	6	89	Beaver
+Texas	Luxembourg	2	83	Hemiscyllium
+Ohio	Samoa	3	11	Wombat
+Minnesota	Kiribati	5	26	Hemitriakis
+Florida	New_Jersey	5	33	Crow
+Mississippi	Thailand	7	38	Pristiophorus
+Missouri	Madagascar	5	86	Swan
+Arizona	Hawaii	8	32	Coccinellidae
+Florida	Wyoming	3	83	Apristurus
+Wisconsin	Uruguay	3	52	Poroderma
+Nebraska	Vatican_City	1	84	Sheep
+Louisiana	Grenada	1	99	Chiloscyllium
+Arkansas	NEW_ZEALAND	0	11	Snipe
+Wyoming	Nigeria	9	34	Manatee
+Connecticut	Nauru	5	71	Human
+Rhode Island	Tanzania	3	87	Goldfinch
+Nevada	Tanzania	8	9	Bullhead_shark
+North Carolina	Alaska	6	57	Flamingo
+Alaska	Spain	9	10	Sphyrna_lewini
+Colorado	Nebraska	1	15	Coccinellidae
+Alaska	Texas	8	8	Apristurus
+Oregon	Japan	4	72	Bullhead_shark
+Florida	Ukraine	7	12	American_Bison
+Maine	Vatican_City	1	45	Rhizoprionodon
+California	Malaysia	9	79	Reindeer
+New Mexico	Illinois	7	74	Swallow
+West Virginia	Maryland	7	29	Mouse
+Montana	Cyprus	7	60	Mule
+Connecticut	Uganda	6	2	Bison
+Pennsylvania	Slovakia	0	19	Poroderma
+Alabama	Lithuania	0	99	Gazelle
+South Dakota	Canada	2	75	Lion
+South Dakota	Guatemala	3	48	Skunk
+Kansas	Kiribati	8	24	Bullhead_shark
+Arizona	California	5	83	Wombat
+Kentucky	Colombia	5	69	Coyote
+Georgia	Washington	7	66	Hawk
+Florida	TRINIDAD_AND_TOBAGO	5	76	Bison
+Washington	Texas	7	34	Dolphin
+Connecticut	Malta	5	45	Heron
+Tennessee	Turkey	7	70	Apristurus
+Utah	Australia	3	48	Carcharhiniformes
+Connecticut	Slovakia	1	57	Wren
+Nevada	Hawaii	9	53	Carcharhiniformes
+Oklahoma	Ukraine	1	4	Scoliodon
+Alabama	Namibia	7	70	Dogfish
+Oregon	Slovenia	9	72	Columbidae
+South Carolina	Illinois	1	1	Parascyllium
+Michigan	NEW_ZEALAND	6	90	Coyote
+Alabama	Washington	7	73	Flamingo
+Wisconsin	Latvia	9	53	Heron
+Wyoming	Finland	8	74	Giant_Panda
+New Jersey	Missouri	2	7	Beaver
+Indiana	Latvia	9	78	Sawshark
+New Jersey	North_Carolina	6	30	Heron
+New Hampshire	Vatican_City	1	90	Goldfinch
+Michigan	Luxembourg	7	36	Bison
+North Dakota	South_Carolina	0	1	Bison
+Indiana	Lithuania	8	52	Gorilla
+Iowa	Ukraine	7	90	Prionace
+Nebraska	Oregon	7	7	Parascyllium
+West Virginia	Ukraine	1	48	Flamingo
+Colorado	Missouri	9	11	Wren
+Delaware	Zimbabwe	6	36	Bison
+Montana	Jordan	3	81	Fox
+Iowa	WESTERN_SAHARA	5	91	Hornet
+Indiana	CZECH_REPUBLIC	3	0	Carcharhinus
+Vermont	Cyprus	3	19	Badger
+Connecticut	Tonga	8	21	Alligator
+Rhode Island	Italy	8	24	Zebra
+Virginia	Virginia	0	89	Pygmy_Shark
+Nevada	Japan	8	34	Cheetah
+Kansas	Vatican_City	4	79	American_Bison
+Mississippi	Canada	6	11	Coyote
+Indiana	Tunisia	2	40	Heron
+New Jersey	Tennessee	2	50	Giant_Panda
+Idaho	Kiribati	4	56	Flamingo
+New Hampshire	Nebraska	1	38	Magpie
+Wyoming	Malawi	6	60	Ram
+Colorado	Pennsylvania	1	40	Hyena
+Iowa	Italy	3	62	Mallard
+New Jersey	Mozambique	5	50	Chiloscyllium
+Alaska	Dominica	1	20	Carcharhiniformes
+Idaho	Massachusetts	7	33	Magpie
+Connecticut	Michigan	2	88	Peafowl
+Kansas	New_Jersey	6	10	Pristiophorus
+Wyoming	Ghana	1	18	Ostrich
+Nebraska	Zambia	2	38	Rhizoprionodon
+New Hampshire	Australia	8	2	Parascyllium
+Mississippi	Alaska	4	2	Beaver
+Nebraska	Vatican_City	2	54	Cobra
+West Virginia	Ecuador	0	57	Hemiscyllium
+Texas	Netherlands	7	26	Poroderma
+Virginia	Wisconsin	7	66	Mouse
+Alabama	Croatia	5	34	Hornet
+Texas	Tonga	2	67	Badger
+Connecticut	Ecuador	2	16	Isurus
+Arkansas	Malawi	0	64	Swallow
+Minnesota	Croatia	5	52	Whale_Shark
+Connecticut	Massachusetts	9	13	Hemiscyllium
+Oklahoma	Alaska	0	57	Wombat
+West Virginia	Spain	4	29	Heron
+Iowa	Sudan	3	43	Gerbil
+Nevada	Michigan	0	44	Louse
+Texas	Virginia	3	3	Hornet
+Washington	Finland	8	96	Pinniped
+Illinois	Nauru	7	87	Hemitriakis
+Arizona	Saudi_Arabia	3	85	Swallow
+Michigan	Jordan	3	13	Sheep
+Kentucky	Singapore	0	87	Coyote
+Minnesota	Hawaii	1	34	Gazelle
+Missouri	Michigan	5	34	Isurus
+Idaho	Cyprus	0	37	Cirrhoscyllium
+North Carolina	Canada	4	84	Flamingo
+New Hampshire	Tunisia	3	97	Baboon
+Minnesota	Saudi_Arabia	4	71	American_Bison
+Pennsylvania	Taiwan	2	43	Mouse
+Illinois	Netherlands	2	67	Mouse
+New Hampshire	CZECH_REPUBLIC	6	79	Hemiscyllium
+North Dakota	Pennsylvania	6	79	Peafowl
+Massachusetts	Spain	0	50	Moose
+Kansas	Minnesota	4	9	Carcharhiniformes
+Virginia	Ethiopia	4	28	Badger
+Kansas	Wyoming	0	56	Sphyrna_lewini
+Tennessee	Vatican_City	7	11	Goose
+Alabama	Switzerland	6	34	Chiloscyllium
+Kentucky	Florida	5	15	Swallow
+Wyoming	Zambia	8	14	Hyena
+Idaho	Virginia	3	62	Wombat
+Ohio	Michigan	9	67	Camel
+Connecticut	Maryland	6	72	Nightingale
+Pennsylvania	Slovenia	1	8	Mouse
+Alaska	Alabama	8	61	Carcharhinus
+Michigan	Virginia	5	28	Carcharhinus
+North Dakota	Illinois	1	93	Columbidae
+Illinois	Maine	8	42	Cheetah
+Colorado	Saudi_Arabia	4	4	Mallard
+Nevada	Ghana	4	77	Peafowl
+Oklahoma	Nebraska	2	57	Triakis
+Maryland	North_Carolina	2	37	Anatidae
+Nebraska	Greece	0	84	Orectolobus
+Ohio	Monaco	2	29	Polecat
+South Carolina	Massachusetts	7	4	Prionace_glauca
+Hawaii	France	0	49	Pristiophorus
+Iowa	Morocco	5	19	Isogomphodon
+Texas	Italy	0	71	Moose
+Idaho	Rhode_Island	2	87	Polecat
+Michigan	Florida	7	93	Mule
+Delaware	TRINIDAD_AND_TOBAGO	2	17	Angel_shark
+Washington	Uganda	7	34	Chamois
+Alaska	Turkey	4	45	Wombat
+Florida	Monaco	6	84	Black_panther
+Kentucky	Malawi	1	4	Pinniped
+Maryland	Illinois	9	2	Camel
+Alabama	Georgia	2	33	Mouse
+Oklahoma	North_Carolina	7	11	Chiloscyllium
+Kentucky	Slovakia	7	10	Gazelle
+Rhode Island	Arizona	7	33	Goose
+Nebraska	NEW_ZEALAND	6	9	Coccinellidae
+Washington	Turkey	9	4	Coccinellidae
+Delaware	Latvia	9	58	Goldfinch
+Virginia	Thailand	5	84	Peafowl
+South Dakota	Nauru	3	19	Bison
+Florida	Minnesota	5	52	Alligator
+Washington	Malaysia	1	63	Anatidae
+Iowa	Thailand	9	19	Chamois
+Colorado	Sweden	6	4	Hamster
+Hawaii	Illinois	9	77	Moose
+New Jersey	Massachusetts	0	51	Hyena
+Hawaii	Mississippi	7	70	Fish
+Ohio	Tonga	0	84	Gorilla
+Vermont	Ecuador	7	27	Wren
+Alaska	Maryland	4	94	Hyena
+Massachusetts	Uruguay	4	4	Gerbil
+Indiana	Turkey	1	32	Pinniped
+Minnesota	Netherlands	1	62	Carcharhiniformes
+New Jersey	Netherlands	6	97	Mallard
+Georgia	Lithuania	4	30	Louse
+Louisiana	Sudan	5	75	American_Bison
+Mississippi	Sudan	1	46	Gazelle
+Wisconsin	Alaska	0	89	Pristiophorus
+Vermont	Oregon	6	16	Cirrhoscyllium
+Georgia	Monaco	2	96	Heron
+Florida	Nebraska	6	43	Hamster
+Iowa	Finland	5	8	Apristurus
+Oregon	Malaysia	6	65	Cobra
+Ohio	Ghana	0	78	Lamniformes
+South Dakota	Dominica	4	92	Angel_shark
+North Dakota	Oregon	7	21	Baboon
+Georgia	Taiwan	7	6	Polecat
+South Dakota	Zimbabwe	1	76	Sawshark
+Minnesota	Illinois	8	41	Baboon
+Massachusetts	Ecuador	0	12	Donkey
+Alaska	Slovenia	5	70	Hemitriakis
+Illinois	South_Carolina	1	38	Mouse
+Alaska	Pennsylvania	4	79	Triakis
+Montana	New_Mexico	9	63	Prionace
+Louisiana	Namibia	2	5	Angel_shark
+Arizona	Greece	5	2	Gerbil
+New Jersey	Washington	3	80	Coccinellidae
+Arkansas	Uzbekistan	2	50	Mule
+Kentucky	Slovakia	0	93	Hornet
+Texas	CZECH_REPUBLIC	8	21	Human
+Rhode Island	Grenada	9	77	Parascyllium
+Florida	Switzerland	4	28	Gazelle
+Michigan	Wisconsin	5	11	Black_panther
+Connecticut	Tunisia	8	3	Chamois
+Virginia	Taiwan	6	44	Lamniformes
+Alabama	Maine	8	99	Ram
+Hawaii	Arizona	8	62	Wren
+South Dakota	Singapore	6	49	Bullhead_shark
+Mississippi	Luxembourg	5	90	Zebra
+Kentucky	Florida	0	54	Prionace_glauca
+Massachusetts	Australia	3	19	Wren
+Kentucky	Netherlands	1	46	Gorilla
+Maine	Nauru	2	30	Camel
+Pennsylvania	Italy	2	53	Baboon
+Kansas	Latvia	4	56	Isurus
+Maine	Georgia	2	3	Parascyllium
+North Carolina	Wisconsin	8	54	Quail
+Tennessee	DOMINICAN_REPUBLIC	1	75	Swallow
+Minnesota	Ethiopia	6	27	Jaguar
+South Dakota	Dominica	8	18	Reindeer
+Maryland	Hawaii	8	42	Swallow
+Massachusetts	DOMINICAN_REPUBLIC	6	36	Giraffe
+South Carolina	Finland	5	21	American_Bison
+North Carolina	Malawi	7	65	Snipe
+Montana	New_Mexico	4	40	Lamna
+West Virginia	Namibia	6	59	Human
+Nebraska	Namibia	2	30	Whale_Shark
+Colorado	Malaysia	0	70	Mallard
+North Carolina	Canada	9	71	Black_panther
+South Carolina	Oregon	9	69	Goose
+New Mexico	Texas	8	46	Snipe
+North Dakota	Tonga	2	42	Donkey
+Missouri	Michigan	5	30	Louse
+Virginia	Saudi_Arabia	7	23	Chiloscyllium
+Illinois	Thailand	2	58	Gerbil
+Colorado	Denmark	3	18	Triaenodon
+Minnesota	Saudi_Arabia	1	2	Snipe
+Rhode Island	Sudan	0	36	Echinorhinus
+Florida	Uruguay	0	4	Sheep
+Hawaii	EQUATORIAL_GUINEA	3	73	Coccinellidae
+Maryland	Sweden	6	96	Poroderma
+Delaware	Wyoming	1	72	Otter
+Colorado	Wisconsin	9	17	Swan
+Alaska	Zimbabwe	3	43	Otter
+Vermont	Sudan	4	69	Squaliformes
+Oregon	Michigan	5	45	Giant_Panda
+Montana	TRINIDAD_AND_TOBAGO	0	97	Pelican
+Illinois	Nauru	2	17	Skunk
+Missouri	Thailand	8	55	Apristurus
+Ohio	Ghana	9	72	Apristurus
+Vermont	TRINIDAD_AND_TOBAGO	2	81	Hemitriakis
+Michigan	COSTA_RICA	5	75	Snipe
+Virginia	Uzbekistan	2	27	Otter
+Alaska	NEW_ZEALAND	8	18	Hemiscyllium
+Colorado	Slovenia	2	53	Cirrhoscyllium
+Virginia	Malawi	3	64	Cheetah
+South Carolina	Spain	3	66	Hemitriakis
+Wyoming	Cyprus	2	62	Wombat
+Iowa	Uganda	4	37	Mouse
+Arkansas	Mississippi	9	0	Moose
+Tennessee	WESTERN_SAHARA	9	28	Rhizoprionodon
+Missouri	Italy	2	71	Ram
+Oklahoma	Ethiopia	7	17	Mouse
+Delaware	New_Jersey	8	18	Beaver
+Idaho	Ukraine	3	27	Lamna
+Florida	Slovenia	1	2	Bullhead_shark
+Florida	Canada	6	22	Swan
+Georgia	Georgia	1	34	Snipe
+New Mexico	Croatia	9	15	Fish
+New York	Nebraska	1	71	Hemitriakis
+Hawaii	Ukraine	9	28	Rhizoprionodon
+Virginia	Mozambique	8	93	Bullhead_shark
+Arkansas	Morocco	9	46	Ostrich
+Missouri	Arizona	1	5	Guanaco
+Connecticut	Nauru	6	51	Rhizoprionodon
+Hawaii	Sweden	7	44	Swan
+Colorado	Wyoming	8	27	Hyena
+Hawaii	Thailand	5	11	Dolphin
+Arizona	Mississippi	0	25	Coyote
+Colorado	Singapore	5	71	Bullhead_shark
+Massachusetts	Hawaii	7	2	Hemiscyllium
+Arkansas	EL_SALVADOR	2	91	Goldfinch
+Massachusetts	Serbia	7	68	Partridge
+Louisiana	Spain	4	61	Pygmy_Shark
+Alabama	Maryland	7	33	Quail
+Kansas	Morocco	4	56	Echinorhinus
+Massachusetts	Tonga	2	47	Anatidae
+Louisiana	CZECH_REPUBLIC	3	29	Otter
+Missouri	TRINIDAD_AND_TOBAGO	2	44	Dogfish
+Kansas	Saudi_Arabia	4	4	Anatidae
+Illinois	Vatican_City	6	41	Prionace
+Connecticut	Tennessee	1	37	Sphyrna_lewini
+Maine	Malawi	3	65	Quail
+Florida	New_Jersey	6	86	Manatee
+California	Washington	0	76	Pristiophorus
+South Dakota	Pennsylvania	3	86	Wombat
+Arizona	Sweden	6	45	Lamniformes
+Texas	WESTERN_SAHARA	8	2	Fox
+Kentucky	Australia	1	71	Dolphin
+Georgia	Uruguay	3	41	Bullhead_shark
+Florida	Dominica	5	46	Pelican
+Hawaii	New_Mexico	2	8	Anatidae
+Florida	Luxembourg	7	77	Apristurus
+Pennsylvania	Kiribati	5	33	Coyote
+Tennessee	Turkey	2	59	Louse
+Delaware	Ireland	7	14	Hornet
+West Virginia	Alaska	7	3	Dogfish
+New Jersey	Samoa	1	6	Orectolobus
+Connecticut	Kiribati	4	99	Wren
+North Carolina	Alaska	4	36	Triakis
+Delaware	Mississippi	8	93	Triaenodon
+Michigan	Ireland	1	2	Orectolobus
+Minnesota	California	0	73	Mouse
+Iowa	Finland	6	92	Sheep
+New Jersey	Texas	5	32	Lamniformes
+Ohio	Maine	3	61	Mule
+Kentucky	Michigan	7	13	Cirrhoscyllium
+Ohio	Finland	0	79	Cormorant
+New Jersey	Massachusetts	6	40	Rhinoceros
+Nevada	Morocco	9	34	Lamna
+Vermont	Saudi_Arabia	9	86	Prionace
+New Mexico	Hawaii	8	4	Peafowl
+Alabama	Thailand	4	34	Quail
+Maine	Virginia	3	52	Lamniformes
+New Hampshire	Madagascar	7	60	Guanaco
+Georgia	Samoa	8	96	Guanaco
+Vermont	Uganda	6	46	Black_panther
+Maryland	Canada	2	10	Reindeer
+Virginia	MARSHALL_ISLANDS	5	3	Swallow
+Florida	California	7	90	Cirrhoscyllium
+Wyoming	Slovenia	1	47	Rhinoceros
+Florida	Denmark	1	62	Reindeer
+Pennsylvania	North_Carolina	6	97	Bison
+Mississippi	Thailand	3	58	Triaenodon
+Ohio	Tennessee	1	91	Raven
+Delaware	Samoa	6	95	Pelican
+Oregon	Namibia	0	89	Coyote
+Wyoming	Taiwan	7	89	Zebra
+Florida	MARSHALL_ISLANDS	5	23	Partridge
+South Carolina	Colombia	3	6	Rhizoprionodon
+Kentucky	EQUATORIAL_GUINEA	9	97	Reindeer
+Louisiana	DOMINICAN_REPUBLIC	2	66	Hamster
+Utah	Romania	1	19	Louse
+Idaho	Japan	9	41	Lamna
+Alabama	South_Carolina	5	61	Wren
+Delaware	EQUATORIAL_GUINEA	7	16	Mallard
+Texas	Samoa	4	56	Lion
+Connecticut	Wyoming	3	35	Ram
+Alaska	Nepal	3	25	Wombat
+Illinois	Florida	0	61	Sawshark
+Tennessee	Ethiopia	0	34	Prionace
+Maine	MARSHALL_ISLANDS	7	11	Triakis
+Maine	Jordan	5	91	Partridge
+Alaska	Sweden	4	0	Nightingale
+Michigan	TRINIDAD_AND_TOBAGO	7	43	Parascyllium
+South Dakota	Maine	1	97	Fish
+Mississippi	Tonga	3	89	Heron
+Virginia	Maryland	2	94	Carcharhinus
+Kentucky	Wyoming	6	85	Chamois
+Connecticut	Massachusetts	4	53	Angel_shark
+New Jersey	Nigeria	8	20	Pelican
+Idaho	Greece	4	30	Goose
+Utah	Malta	0	15	Prionace
+Illinois	Uzbekistan	8	59	Bullhead_shark
+Wisconsin	Cyprus	7	83	Rhinoceros
+California	Spain	6	45	Hemitriakis
+Mississippi	Ecuador	5	29	Hornet
+Georgia	EQUATORIAL_GUINEA	6	9	Mouse
+New York	TRINIDAD_AND_TOBAGO	2	47	Echinorhinus
+Arkansas	Malta	9	40	Giraffe
+Oregon	Malaysia	4	37	Moose
+Indiana	Alaska	6	78	Magpie
+Louisiana	Arizona	5	40	Pelican
+Michigan	Nauru	9	36	Pony
+Utah	EL_SALVADOR	7	57	Mule
+South Dakota	Ireland	4	3	Hawk
+New Jersey	Mozambique	4	60	Goldfinch
+Oklahoma	Morocco	2	12	Mallard
+North Carolina	Luxembourg	5	34	Goldfinch
+Washington	Morocco	6	86	Moose
+Delaware	Pennsylvania	9	20	Isogomphodon
+Idaho	Saudi_Arabia	6	64	Beaver
+Oregon	North_Carolina	8	17	Peafowl
+South Dakota	Sweden	7	74	Anatidae
+New York	New_Mexico	5	15	Sheep
+Oregon	Mississippi	2	15	Anatidae
+Florida	Uruguay	7	30	Goldfinch
+Virginia	Tennessee	9	88	Giant_Panda
+Massachusetts	Tunisia	2	52	Cobra
+Mississippi	MARSHALL_ISLANDS	7	25	Lamniformes
+Oregon	Rhode_Island	2	75	Triakis
+Arkansas	Oregon	7	4	Pristiophorus
+Maine	Illinois	1	32	Parascyllium
+West Virginia	Zimbabwe	3	72	Hemiscyllium
+Connecticut	Samoa	2	40	Flamingo
+Washington	Morocco	4	80	Bison
+Mississippi	Colombia	7	10	Bison
+Wyoming	South_Carolina	1	8	Pygmy_Shark
+Idaho	Ireland	7	33	Otter
+Nebraska	Nepal	5	78	Prionace_glauca
+North Dakota	Wyoming	5	50	Prionace_glauca
+New York	Slovakia	5	75	Manatee
+Nevada	Minnesota	2	99	Triaenodon
+Minnesota	Nepal	3	96	Camel
+Wisconsin	Missouri	8	61	Lamna
+Connecticut	Slovenia	2	5	Beaver
+South Carolina	Ethiopia	5	80	Chiloscyllium
+Missouri	Saudi_Arabia	5	63	Otter
+Mississippi	Thailand	7	80	Apristurus
+Delaware	Washington	8	6	Reindeer
+Utah	Uzbekistan	6	92	Raven
+Delaware	Georgia	0	88	Triakis
+North Dakota	Vatican_City	0	93	Skunk
+Minnesota	Texas	4	61	Lamniformes
+Hawaii	Latvia	2	36	Wren
+Arizona	Missouri	4	64	Human
+West Virginia	Finland	6	29	Lamniformes
+Maryland	Netherlands	0	7	Anatidae
+Rhode Island	Illinois	2	16	Crow
+Wisconsin	Luxembourg	6	26	American_Bison
+North Dakota	Nigeria	2	92	Gorilla
+Missouri	Washington	5	76	Nightingale
+Ohio	Zambia	9	90	Coyote
+Colorado	Luxembourg	8	17	Whale_Shark
+Georgia	Sweden	7	23	Lamna
+New Jersey	Virginia	5	56	Zebra
+Delaware	Grenada	7	94	Pristiophorus
+South Carolina	Serbia	1	1	Cirrhoscyllium
+Indiana	Monaco	9	11	Rhinoceros
+South Dakota	Uruguay	2	91	Mouse
+South Dakota	Oregon	6	43	Wombat
+New Mexico	Slovenia	7	66	Pristiophorus
+Maryland	Morocco	7	0	Dogfish
+New Hampshire	Hawaii	1	28	Heron
+New Hampshire	Turkey	2	76	Bullhead_shark
+Mississippi	Latvia	2	5	Hornet
+Nevada	Rhode_Island	1	11	Prionace
+Oklahoma	EQUATORIAL_GUINEA	9	83	Fox
+Wyoming	Maryland	4	6	Hornet
+Georgia	Uzbekistan	6	82	Flamingo
+Maryland	Malaysia	0	40	Ostrich
+Tennessee	EL_SALVADOR	4	31	Wombat
+Oklahoma	Latvia	9	98	Alligator
+Montana	Latvia	4	2	Dolphin
+Oklahoma	CZECH_REPUBLIC	1	89	Cirrhoscyllium
+Louisiana	Kiribati	2	49	Skunk
+Vermont	Tennessee	2	70	Parascyllium
+Iowa	Louisiana	2	57	Magpie
+Hawaii	Italy	1	91	Gorilla
+Indiana	Samoa	2	7	Cormorant
+New Jersey	Samoa	4	43	Cirrhoscyllium
+New Hampshire	Ecuador	2	65	Gerbil
+Hawaii	Hawaii	4	25	Triakis
+Louisiana	Pennsylvania	0	13	Sawshark
+South Dakota	Ukraine	0	27	Zebra
+Kentucky	Monaco	1	12	Badger
+Maryland	Nigeria	7	3	Parascyllium
+California	Saudi_Arabia	1	85	Prionace_glauca
+North Dakota	Georgia	0	71	Magpie
+Wyoming	Malawi	3	85	Prionace
+North Dakota	Pennsylvania	6	54	Nightingale
+Minnesota	EQUATORIAL_GUINEA	3	91	Jackal
+Kentucky	Latvia	3	93	Badger
+Michigan	DOMINICAN_REPUBLIC	4	21	Skunk
+Maine	EL_SALVADOR	2	32	Badger
+Kentucky	South_Carolina	6	99	Wombat
+Washington	Tonga	4	20	Lamniformes
+Montana	Italy	1	91	Black_panther
+Idaho	MARSHALL_ISLANDS	7	68	Peafowl
+Nevada	Serbia	5	63	Squaliformes
+Mississippi	Greece	4	78	Bison
+West Virginia	France	8	15	Hemiscyllium
+New Jersey	Ukraine	4	57	Hemitriakis
+Maine	Zimbabwe	6	29	Isurus
+Alabama	Slovenia	4	21	Giraffe
+Tennessee	Nepal	2	11	Louse
+Hawaii	EQUATORIAL_GUINEA	4	27	Dogfish
+Rhode Island	Serbia	7	46	Pygmy_Shark
+Wyoming	Oregon	1	73	Ram
+Ohio	Ethiopia	1	15	Poroderma
+Mississippi	Spain	7	37	Cirrhoscyllium
+Rhode Island	Jordan	1	97	Mouse
+Arizona	Namibia	5	47	Jackal
+Kansas	Virginia	2	80	Wombat
+Tennessee	Serbia	5	65	Chiloscyllium
+Kentucky	Minnesota	0	24	Beaver
+North Dakota	Mississippi	9	39	Polecat
+Hawaii	Georgia	8	30	Hemitriakis
+Rhode Island	Sweden	2	7	Negaprion
+Michigan	EL_SALVADOR	0	93	Mule
+New Jersey	Turkey	9	82	Dolphin
+Hawaii	Grenada	7	29	Manatee
+Georgia	Louisiana	5	58	Hamster
+Delaware	Samoa	4	27	Coyote
+Kansas	Wisconsin	3	27	Gorilla
+Illinois	Croatia	2	72	Carcharhiniformes
+Delaware	Namibia	1	68	Parmaturus
+Nebraska	Tennessee	3	50	Pony
+Oklahoma	Jordan	2	39	Giraffe
+New Mexico	Arizona	0	19	Pristiophorus
+Rhode Island	Slovakia	5	44	Prionace_glauca
+Washington	Monaco	9	50	Hyena
+Nevada	Taiwan	2	96	Otter
+Minnesota	Tunisia	4	63	Manatee
+Wisconsin	WESTERN_SAHARA	3	33	Lamna
+Wisconsin	Thailand	1	37	Apristurus
+Alaska	Uruguay	6	72	Ostrich
+Virginia	Florida	9	87	Dogfish
+Delaware	Missouri	5	28	Gerbil
+Maine	Virginia	3	98	Lamniformes
+Minnesota	EL_SALVADOR	5	70	Mule
+Michigan	Maryland	9	93	Cirrhoscyllium
+Oklahoma	EQUATORIAL_GUINEA	8	6	Lamna
+North Dakota	Netherlands	1	63	Hamster
+South Dakota	Arizona	9	74	Squaliformes
+Illinois	Rhode_Island	4	96	Alligator
+Colorado	Wisconsin	9	13	Wren
+Arkansas	Finland	3	69	Black_panther
+Vermont	Romania	9	46	Reindeer
+Ohio	Grenada	9	24	Scoliodon
+Georgia	Alabama	5	42	Mallard
+Arizona	Massachusetts	9	7	Fox
+New Mexico	Turkey	2	69	Chiloscyllium
+Idaho	Saudi_Arabia	2	87	Manatee
+Pennsylvania	Vatican_City	0	54	Hornet
+Arizona	Slovakia	8	84	Bullhead_shark
+Illinois	Louisiana	7	71	Cheetah
+Virginia	Morocco	0	26	Hemitriakis
+Missouri	Kiribati	1	54	Giant_Panda
+Nebraska	Zimbabwe	6	35	Parascyllium
+Utah	DOMINICAN_REPUBLIC	5	78	Hornet
+South Dakota	Ghana	1	21	Crow
+Maryland	Nepal	4	14	Isurus
+Oregon	WESTERN_SAHARA	7	83	Squaliformes
+Nebraska	Grenada	3	68	Pygmy_Shark
+North Carolina	EL_SALVADOR	4	6	Chiloscyllium
+Massachusetts	Tunisia	1	88	Goose
+Alaska	Maryland	6	74	Reindeer
+South Dakota	Nebraska	9	8	Lamniformes
+Washington	Luxembourg	4	38	Quail
+South Dakota	Thailand	3	9	Moose
+Mississippi	South_Carolina	7	78	Peafowl
+Oklahoma	Sudan	6	52	Isogomphodon
+Nebraska	Lithuania	2	2	Black_panther
+Maine	Luxembourg	3	14	Reindeer
+West Virginia	Ghana	2	95	Swallow
+Maryland	France	8	80	Dolphin
+Nebraska	Lithuania	9	92	Carcharhiniformes
+South Dakota	Florida	3	67	Mallard
+Alabama	Italy	1	83	Jackal
+Alabama	Netherlands	5	54	Giant_Panda
+Vermont	Uzbekistan	3	12	Lamniformes
+Washington	Mozambique	4	25	Wren
+Alaska	Tunisia	1	93	Triakis
+Nevada	Zambia	4	47	Giant_Panda
+Montana	Missouri	2	74	Swallow
+Alabama	Switzerland	8	84	Isurus
+Minnesota	Maine	0	0	Gorilla
+Vermont	Lithuania	9	18	Crow
+West Virginia	Nigeria	6	43	Prionace
+Vermont	Texas	0	85	Hamster
+Florida	Zimbabwe	6	5	Reindeer
+Virginia	Nebraska	1	80	Beaver
+California	Missouri	5	14	Magpie
+North Carolina	Latvia	4	77	Zebra
+Mississippi	Texas	2	78	Prionace
+Missouri	Japan	5	82	Lamna
+New Jersey	North_Carolina	2	51	Donkey
+Maryland	Sudan	9	15	Badger
+Iowa	Ecuador	1	63	Orectolobus
+Arkansas	EL_SALVADOR	9	97	Camel
+Arizona	Samoa	7	76	Otter
+Alabama	Zimbabwe	5	60	Rhizoprionodon
+Michigan	Sweden	7	54	Chiloscyllium
+Rhode Island	Virginia	1	89	Pristiophorus
+Utah	Pennsylvania	8	88	Peafowl
+Rhode Island	Tuvalu	9	68	Swallow
+Minnesota	Uzbekistan	1	9	Cormorant
+Kentucky	Colombia	4	75	Hornet
+Florida	CZECH_REPUBLIC	2	18	Cirrhoscyllium
+Rhode Island	Uruguay	0	28	Poroderma
+Ohio	Illinois	1	19	Flamingo
+California	Greece	7	55	Sheep
+Montana	Slovakia	0	84	Otter
+Ohio	Sudan	6	68	Dolphin
+Maryland	Michigan	0	4	Human
+Maryland	New_Mexico	5	30	Human
+Washington	Nauru	3	18	Nightingale
+Rhode Island	Minnesota	6	94	Hemitriakis
+Vermont	Switzerland	3	64	Goose
+Georgia	Namibia	3	74	Dolphin
+Florida	Monaco	9	37	Giant_Panda
+South Carolina	Finland	4	95	Echinorhinus
+Indiana	Turkey	7	99	Ram
+Indiana	Taiwan	1	58	Cobra
+Illinois	Canada	4	93	Reindeer
+Utah	Monaco	0	73	Giraffe
+Pennsylvania	Monaco	2	84	Lion
+Wisconsin	Alaska	9	58	Lamniformes
+Idaho	Slovenia	9	44	Giraffe
+Alaska	South_Carolina	1	49	Snipe
+New Jersey	Uruguay	8	33	Columbidae
+Illinois	Nebraska	7	46	Rhinoceros
+Wisconsin	Florida	7	99	Fish
+Virginia	Michigan	9	95	Isurus
+Wisconsin	Mississippi	6	12	Isogomphodon
+Alabama	Lithuania	5	11	Carcharhiniformes
+California	CZECH_REPUBLIC	0	86	Chiloscyllium
+Indiana	France	1	5	American_Bison
+Michigan	Tuvalu	4	26	Anatidae
+South Dakota	DOMINICAN_REPUBLIC	4	39	Louse
+New Mexico	Tonga	4	33	Apristurus
+South Dakota	Italy	6	8	Mouse
+North Dakota	Nepal	8	98	Beaver
+South Carolina	Singapore	4	78	Dolphin
+Arizona	Netherlands	5	36	Bison
+Utah	Slovakia	4	3	Lion
+Arizona	Massachusetts	6	15	Crow
+California	Uruguay	9	99	Orectolobus
+Ohio	Dominica	9	0	Prionace_glauca
+Kentucky	Tennessee	9	96	Prionace
+New York	Tunisia	1	63	Anatidae
+North Dakota	Guatemala	1	79	American_Bison
+Georgia	Tanzania	8	11	Moose
+Georgia	Latvia	1	77	Lamna
+Florida	Ghana	7	14	Donkey
+Michigan	New_Mexico	3	36	Flamingo
+Nevada	Dominica	0	53	Sphyrna_lewini
+California	Tanzania	4	9	Skunk
+Nevada	Uganda	5	4	Hemitriakis
+New Mexico	Grenada	3	12	Hyena
+Florida	Virginia	5	72	Mallard
+Kentucky	Zambia	1	78	Camel
+Maine	Namibia	6	58	Wombat
+Wyoming	Tuvalu	6	95	Magpie
+Ohio	Lithuania	3	81	Chamois
+New Mexico	Madagascar	0	20	Parmaturus
+Missouri	Mozambique	6	59	Swan
+West Virginia	Grenada	5	39	Guanaco
+Indiana	Louisiana	5	63	Hawk
+Michigan	Wisconsin	5	3	Gorilla
+Tennessee	Mozambique	4	27	Swan
+Connecticut	North_Carolina	6	50	Triaenodon
+Texas	Georgia	1	23	Rhizoprionodon
+Mississippi	Alabama	4	40	Gorilla
+Florida	Australia	3	61	Pinniped
+Rhode Island	Monaco	5	4	Guanaco
+Colorado	Serbia	7	81	Otter
+Arkansas	Wisconsin	7	14	Pygmy_Shark
+Montana	Nebraska	1	55	Cormorant
+Alabama	Malawi	1	27	Rhizoprionodon
+Louisiana	Luxembourg	5	14	Hemiscyllium
+Delaware	Tanzania	6	4	Isurus
+Texas	Louisiana	0	55	Orectolobus
+Tennessee	Lithuania	1	9	Rhinoceros
+Connecticut	Rhode_Island	2	51	Zebra
+Virginia	New_Jersey	7	18	Anatidae
+Pennsylvania	Malta	7	72	Isurus
+Michigan	Luxembourg	4	16	Black_panther
+Washington	Pennsylvania	3	10	Pygmy_Shark
+Virginia	Monaco	8	12	Quail
+Delaware	Grenada	0	40	Snipe
+North Carolina	Maine	6	65	Squaliformes
+Pennsylvania	Denmark	2	91	Nightingale
+Minnesota	Tuvalu	5	72	Dolphin
+Wyoming	Uruguay	9	94	Rhinoceros
+Washington	Virginia	6	99	Isogomphodon
+Rhode Island	Uruguay	5	97	Bullhead_shark
+Arizona	Luxembourg	9	76	Coccinellidae
+Oregon	Cyprus	9	25	Guanaco
+Washington	Colombia	8	42	Fox
+Arkansas	Maine	9	53	Parascyllium
+South Carolina	Netherlands	4	87	Baboon
+Pennsylvania	Malawi	7	88	Ostrich
+Connecticut	TRINIDAD_AND_TOBAGO	7	81	Columbidae
+Minnesota	Oregon	4	97	Carcharhinus
+New Hampshire	Tennessee	6	60	Quail
+Kansas	Mozambique	5	52	Swallow
+Tennessee	Malaysia	5	53	Cirrhoscyllium
+Utah	Mississippi	0	85	Columbidae
+Minnesota	Namibia	8	20	Louse
+Hawaii	Netherlands	3	31	Apristurus
+Virginia	Cyprus	6	60	Guanaco
+Texas	Maine	9	2	Carcharhinus
+Rhode Island	North_Carolina	0	48	Angel_shark
+Connecticut	Australia	1	72	Isogomphodon
+Virginia	Wisconsin	0	95	Hemitriakis
+Arizona	Australia	6	68	Dolphin
+Virginia	Zimbabwe	8	50	Guanaco
+Illinois	Spain	0	43	Camel
+Florida	Ireland	1	23	Parascyllium
+Mississippi	Wyoming	2	61	Hornet
+Connecticut	Tuvalu	4	56	Hyena
+Utah	Switzerland	2	89	Squaliformes
+Nevada	Nepal	5	78	Carcharhiniformes
+North Dakota	Ecuador	7	14	Gerbil
+California	Lithuania	2	93	Mouse
+Illinois	North_Carolina	0	87	Goldfinch
+Wyoming	Virginia	4	96	Giraffe
+Wyoming	Dominica	8	48	Triakis
+Louisiana	EQUATORIAL_GUINEA	3	53	Swallow
+Alaska	Pennsylvania	6	63	Crow
+North Carolina	CZECH_REPUBLIC	1	74	Sawshark
+Kansas	Massachusetts	2	93	Hemitriakis
+Missouri	Japan	4	90	Prionace_glauca
+Mississippi	Zambia	2	58	Snipe
+New Mexico	Colombia	8	61	Ram
+Texas	Nebraska	1	87	Chamois
+Connecticut	Ukraine	8	16	Hornet
+Arizona	Zambia	1	26	Anatidae
+Georgia	Massachusetts	0	84	Hawk
+Utah	WESTERN_SAHARA	3	35	Ostrich
+Vermont	Croatia	4	53	Hyena
+Minnesota	Taiwan	2	37	Whale_Shark
+Kentucky	Slovakia	7	93	Triakis
+Florida	California	1	13	Parascyllium
+Alaska	Louisiana	8	62	Wren
+Maryland	Mississippi	2	93	Mule
+Ohio	Jordan	6	74	Isurus
+Illinois	NEW_ZEALAND	0	10	Prionace
+Virginia	Nebraska	2	86	Hornet
+Louisiana	Slovakia	4	55	Flamingo
+Hawaii	Uruguay	3	31	Baboon
+Washington	Lithuania	0	6	Isurus
+Mississippi	Barbados	9	79	Orectolobus
+Massachusetts	Zambia	1	86	Black_panther
+Florida	Colombia	8	8	Jaguar
+New York	Wyoming	0	7	Swallow
+Ohio	Vatican_City	2	69	Ram
+Illinois	Malawi	8	2	Isurus
+Louisiana	Colombia	5	10	Swallow
+Indiana	Hawaii	7	7	Scoliodon
+Colorado	Spain	9	94	Camel
+Montana	Singapore	3	20	Giraffe
+Massachusetts	NEW_ZEALAND	1	10	Sheep
+Utah	Mississippi	4	80	Angel_shark
+Iowa	Wyoming	2	13	Pinniped
+Idaho	Zimbabwe	8	1	Hyena
+Idaho	Luxembourg	4	89	Baboon
+Idaho	Serbia	0	72	Angel_shark
+Kansas	Alabama	2	24	Squaliformes
+Colorado	Nebraska	7	70	Camel
+South Dakota	France	5	70	Prionace
+Alaska	DOMINICAN_REPUBLIC	3	56	Whale_Shark
+Hawaii	Michigan	4	85	Flamingo
+Wyoming	Ghana	0	34	Hamster
+New Jersey	Singapore	3	26	Hamster
+Nebraska	Lithuania	1	62	Dogfish
+Hawaii	Minnesota	8	46	Wombat
+Kentucky	Grenada	5	67	Lamna
+Illinois	Jordan	8	84	Human
+Oregon	Tennessee	1	85	Swan
+Wisconsin	Samoa	9	34	Ostrich
+Oregon	Madagascar	3	12	Guanaco
+Rhode Island	Vatican_City	2	22	Human
+Delaware	Louisiana	8	22	Hyena
+Mississippi	Alabama	8	96	Human
+Arkansas	Thailand	0	27	Mule
+South Carolina	CZECH_REPUBLIC	5	61	Camel
+Illinois	Alaska	8	86	Reindeer
+North Dakota	Ukraine	0	68	Alligator
+Louisiana	Kiribati	5	22	Triaenodon
+Hawaii	New_Mexico	5	65	Lamna
+Georgia	WESTERN_SAHARA	1	61	Echinorhinus
+Rhode Island	Louisiana	6	22	Giraffe
+New York	Sweden	7	22	Manatee
+Rhode Island	Illinois	1	23	Partridge
+Florida	Denmark	8	97	Cormorant
+Oregon	Ukraine	1	57	Wren
+Massachusetts	Monaco	8	0	Pony
+Illinois	California	1	84	Squaliformes
+Illinois	Michigan	7	98	Bullhead_shark
+Washington	Tuvalu	5	88	Gerbil
+Connecticut	Saudi_Arabia	7	46	Whale_Shark
+Nevada	NEW_ZEALAND	8	64	Mouse
+California	Grenada	8	57	Pelican
+New Jersey	Madagascar	1	20	Quail
+Vermont	Japan	3	30	Goose
+Nevada	COSTA_RICA	0	84	Scoliodon
+Indiana	Uganda	9	31	Gerbil
+North Dakota	Oregon	4	72	Skunk
+Ohio	Oregon	9	41	Black_panther
+Virginia	Uzbekistan	2	39	Pelican
+Tennessee	Washington	1	99	Lamna
+Colorado	Serbia	3	46	Badger
+North Carolina	Oregon	4	75	Beaver
+Colorado	TRINIDAD_AND_TOBAGO	7	15	Louse
+Wisconsin	Zambia	2	4	Hamster
+South Dakota	COSTA_RICA	2	93	Columbidae
+Illinois	Slovenia	2	71	Pygmy_Shark
+California	Monaco	2	2	Wren
+Missouri	Vatican_City	1	78	Nightingale
+New Mexico	Hawaii	4	18	Zebra
+New Mexico	Lithuania	5	77	Apristurus
+Idaho	Zimbabwe	9	24	Triaenodon
+Kentucky	Florida	8	63	Nightingale
+New Hampshire	Wisconsin	8	84	Negaprion
+Alabama	Alabama	1	39	Donkey
+Indiana	North_Carolina	9	3	Parascyllium
+Montana	Spain	9	5	Squaliformes
+Idaho	Nepal	2	39	Scoliodon
+Massachusetts	Slovenia	1	3	Partridge
+North Dakota	Thailand	1	9	Cormorant
+Tennessee	Monaco	4	64	Chamois
+Florida	Missouri	8	49	Pygmy_Shark
+Colorado	Mozambique	9	9	Dolphin
+Texas	Sweden	1	76	Gorilla
+Wisconsin	Malaysia	7	51	Ram
+Georgia	Wyoming	9	35	Cobra
+Pennsylvania	Canada	6	72	Louse
+Georgia	Samoa	8	4	Columbidae
+Tennessee	France	7	82	Carcharhinus
+Illinois	Turkey	2	54	Fish
+North Dakota	Colombia	0	10	Parascyllium
+Nebraska	Lithuania	2	26	Flamingo
+Utah	Finland	4	37	Rhinoceros
+Wisconsin	Guatemala	5	35	Mouse
+California	Taiwan	6	38	Scoliodon
+New Mexico	Florida	2	80	Lamniformes
+Illinois	Tennessee	4	86	Pony
+Nebraska	Zambia	9	84	Heron
+Ohio	CZECH_REPUBLIC	1	56	Goldfinch
+Ohio	Luxembourg	5	29	Cheetah
+Washington	Romania	4	53	Ostrich
+California	Zimbabwe	7	9	Bullhead_shark
+Wyoming	Monaco	6	20	Isurus
+Mississippi	France	0	22	Pristiophorus
+Wyoming	COSTA_RICA	5	3	Scoliodon
+Oregon	Turkey	9	5	Coccinellidae
+Virginia	Jordan	5	22	Angel_shark
+Virginia	Illinois	1	95	Donkey
+Iowa	Slovakia	5	87	Anatidae
+Wyoming	Canada	6	81	Otter
+Connecticut	Hawaii	7	15	Partridge
+Utah	Netherlands	5	55	Goldfinch
+Georgia	Finland	5	67	Gerbil
+New York	Italy	8	15	Heron
+Indiana	Florida	3	2	Alligator
+Arkansas	New_Jersey	9	99	Pinniped
+North Carolina	NEW_ZEALAND	8	59	Parascyllium
+Oregon	Turkey	3	59	Rhinoceros
+Michigan	DOMINICAN_REPUBLIC	8	33	Isurus
+South Carolina	Maryland	7	71	Bison
+New Jersey	Denmark	3	53	Gazelle
+Missouri	Ecuador	0	32	Heron
+North Carolina	Virginia	5	96	Lamna
+Nevada	Jordan	2	94	Gerbil
+Montana	Uganda	8	68	Ram
+Indiana	Jordan	1	93	Partridge
+New Mexico	Slovakia	7	68	Otter
+Iowa	Latvia	6	37	Fox
+Washington	Croatia	4	51	Human
+Alaska	Jordan	5	7	Rhizoprionodon
+Illinois	Luxembourg	9	7	Baboon
+New Jersey	Serbia	9	89	Sheep
+West Virginia	Tonga	2	51	Partridge
+Alabama	Turkey	7	35	Chamois
+South Carolina	Thailand	1	55	Quail
+Rhode Island	Ireland	6	71	Isogomphodon
+Alaska	Washington	6	38	Zebra
+North Carolina	Virginia	8	93	Hyena
+Washington	Tunisia	6	11	Sphyrna_lewini
+Ohio	Zambia	0	89	Lion
+Connecticut	Tunisia	3	87	Isurus
+New Jersey	Mozambique	1	71	Sawshark
+Montana	WESTERN_SAHARA	4	28	Black_panther
+Maryland	Uruguay	8	82	Pygmy_Shark
+Utah	Ghana	0	7	Lamna
+Oregon	Greece	7	10	Dogfish
+Texas	Uganda	5	22	Mouse
+South Carolina	Singapore	8	93	Flamingo
+Hawaii	Uganda	6	41	Alligator
+Hawaii	Tuvalu	5	17	Parmaturus
+Indiana	EL_SALVADOR	3	89	Coccinellidae
+Nebraska	EL_SALVADOR	5	77	Bison
+Iowa	Malawi	3	70	Manatee
+California	EL_SALVADOR	1	75	Isogomphodon
+Montana	New_Jersey	4	75	Pinniped
+New Jersey	Tunisia	2	35	Rhinoceros
+Massachusetts	Morocco	0	93	Hyena
+Idaho	Nebraska	2	29	Moose
+Connecticut	Australia	6	34	Pinniped
+Mississippi	Malawi	4	94	Orectolobus
+Connecticut	EL_SALVADOR	3	63	Scoliodon
+South Carolina	Illinois	2	40	Prionace
+Vermont	Lithuania	3	90	Triakis
+Virginia	Australia	3	66	Hawk
+North Dakota	Florida	4	77	Polecat
+Wyoming	Wyoming	6	29	Poroderma
+AAA	BBB	10	100	EEE
+AAAA	BBBB	10	100	EEEE

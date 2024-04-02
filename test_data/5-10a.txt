@@ -1,0 +1,13 @@
+A:char(25)	B:char(25)	C:int	D:int	E:char(25)
+Florida	TRINIDAD_AND_TOBAGO	9	13	Goldfinch
+New_Mexico	Minnesota	2	27	Peafowl
+Texas	North_Carolina	2	21	Prionace_glauca
+Mississippi	Uzbekistan	9	67	Coccinellidae
+Arizona	California	7	55	Louse
+Rhode_Island	Alabama	6	92	Anatidae
+Alabama	Malta	6	84	Chamois
+California	Sudan	4	70	Prionace_glauca
+Connecticut	France	8	92	Alligator
+Ohio	Massachusetts	7	40	Cirrhoscyllium
+AAA	BBB	10	100	EEE
+AAAA	BBBB	10	100	EEEE

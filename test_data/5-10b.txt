@@ -1,0 +1,13 @@
+A:char(25)	B:char(25)	C:int	D:int	E:char(25)
+Maryland	Uzbekistan	4	14	Cormorant
+South Carolina	MARSHALL_ISLANDS	1	77	Badger
+Arkansas	Illinois	7	24	Anatidae
+Colorado	Ireland	0	14	Camel
+Kentucky	Australia	8	78	Goose
+Maine	COSTA_RICA	2	20	Otter
+Mississippi	Saudi_Arabia	5	80	Pelican
+Massachusetts	Uganda	8	39	Bullhead_shark
+Massachusetts	Alabama	7	3	Goose
+Maryland	Tanzania	9	77	Parascyllium
+AAA	BBB	10	100	EEE
+AAAA	BBBB	10	100	EEEE
