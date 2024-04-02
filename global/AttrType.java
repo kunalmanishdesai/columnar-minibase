@@ -1,6 +1,8 @@
 package global;
 
-/** 
+import java.util.Objects;
+
+/**
  * Enumeration class for AttrType
  * 
  */
@@ -49,5 +51,17 @@ public class AttrType {
       return "attrNull";
     }
     return ("Unexpected AttrType " + attrType);
+  }
+
+  @Override
+  public boolean equals(Object object) {
+    if (this == object) return true;
+    if (!(object instanceof AttrType attrType1)) return false;
+    return attrType == attrType1.attrType;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(attrType);
   }
 }
