@@ -3,6 +3,7 @@ package global;
 import heap.Tuple;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class TID {
 
@@ -17,6 +18,10 @@ public class TID {
         this.numRIDs = numRIDs;
         this.position = position;
         this.rids = new RID[numRIDs];
+
+        for(int  i = 0 ;i < numRIDs; i++) {
+            rids[i] = new RID();
+        }
     }
 
     public TID(byte[] data) {
@@ -83,4 +88,13 @@ public class TID {
         return data;
     }
 
+    @Override
+    public String toString() {
+        return "TID{" +
+                "numRIDs=" + numRIDs +
+                ", position=" + position +
+                ", rids=" + Arrays.toString(rids) +
+                ", isDeleted=" + isDeleted +
+                '}';
+    }
 }
