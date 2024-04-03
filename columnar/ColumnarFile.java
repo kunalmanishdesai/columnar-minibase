@@ -122,6 +122,33 @@ public class ColumnarFile {
         }
     }
 
+    public Tuple getTuple(TID tid) {
+
+        Tuple oTuple = new Tuple();
+        try {
+            oTuple.setHdr((short) getNumColumns(), getAttrTypes(), new short[] {30,30,30}) ;
+        } catch (IOException | InvalidTypeException | InvalidTupleSizeException e) {
+            throw new RuntimeException("Error setting header for otuple",e);
+        }
+
+        try {
+
+        for (int i =0; i< getNumColumns();i++) {
+
+            Tuple columnTuple = new Tuple(columnFiles[i].getFile().getRecord(tid.getRid(i)).getTupleByteArray());
+//                tid.setRid(i,tid1.getRid(i));
+            Utils.insertIntoTuple(getAttrTypes()[i],columnTuple,i+1,oTuple);
+            }
+
+        return oTuple;
+
+        } catch (InvalidTupleSizeException | IOException e) {
+            throw new RuntimeException("Error getting tuple",e);
+        } catch (Exception e) {
+            throw new RuntimeException("Error fetching record from column file", e);
+        }
+    }
+
     public AttrType[] getAttrTypes() {
 
         AttrType[] attrTypes = new AttrType[numColumns];
