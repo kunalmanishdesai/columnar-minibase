@@ -21,13 +21,13 @@ case "$last_arg" in
             exit 1
         fi
         $JAVA FileScan.java "$rest_args" ;;
-    "ColumnScan")
-        $JAVAC ColumnScan.java
+    "COLUMNSCAN")
+        $JAVAC ColumnScanCommand.java
         if [ $? -ne 0 ]; then
             echo "Compilation failed. Exiting."
             exit 1
         fi
-        $JAVA ColumnScan.java "$rest_args" ;;
+        $JAVA ColumnScanCommand.java "$rest_args" ;;
     "BTree")
         $JAVAC BTreeScan.java
         if [ $? -ne 0 ]; then

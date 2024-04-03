@@ -47,5 +47,20 @@ public class CondExpr {
     
     next = null;
   }
+
+  public CondExpr(CondExpr condExpr) {
+    this.op = condExpr.op;
+    this.type1 = condExpr.type1;
+    this.type2 = condExpr.type2;
+    this.operand1 = new Operand(condExpr.operand1);
+    this.operand2 = new Operand(condExpr.operand2);
+
+
+    if (condExpr.next != null) {
+      this.next = new CondExpr(condExpr.next);
+    } else {
+      this.next = null;
+    }
+  }
 }
 
