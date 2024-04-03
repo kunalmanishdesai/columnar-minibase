@@ -17,6 +17,8 @@ public class OutputTupleAttributes {
     private final FldSpec[] prodSpec;
     private final CondExpr[] condExprs;
 
+    private final AttrType[] conditionAttrs;
+
     public OutputTupleAttributes(ColumnarFile columnarFile, String conditionsString, String targetColumns) {
         this.columnarFile = columnarFile;
 
@@ -28,6 +30,7 @@ public class OutputTupleAttributes {
 
         prodSpec = new FldSpec[targetColumnNames.length];
         outputAttrs = new AttrType[targetColumnNames.length];
+
         for (int i = 0; i < targetColumnNames.length; i++) {
             int columnNo = columnarFile.getColumnNo(targetColumnNames[i].trim());
             prodSpec[i] = new FldSpec(new RelSpec(RelSpec.outer), columnNo+1);
@@ -51,17 +54,19 @@ public class OutputTupleAttributes {
 
         String[] conditions = pattern.split(conditionsString);
 
+        conditionAttrs = new AttrType[conditions.length];
         // Parse each condition string
-        condExprList.add(parseCondition(conditions[0]));
+        condExprList.add(parseCondition(0,conditions[0]));
+
 
         // Parse subsequent conditions
         for (int i = 1; i < conditions.length; i++) {
             if (logicalOperators.get(i - 1).trim().equalsIgnoreCase("AND")) {
                 // If the previous logical operator is "AND", parse the condition
-                condExprList.add(parseCondition(conditions[i]));
+                condExprList.add(parseCondition(i,conditions[i]));
             } else if (logicalOperators.get(i - 1).trim().equalsIgnoreCase("OR")) {
                 // If the previous logical operator is "OR", link the current condition with the previous one
-                condExprList.get(condExprList.size() - 1).next = parseCondition(conditions[i]);
+                condExprList.get(condExprList.size() - 1).next = parseCondition(i,conditions[i]);
             }
         }
 
@@ -69,7 +74,7 @@ public class OutputTupleAttributes {
         condExprs[condExprs.length-1] = null;
     }
 
-    private CondExpr parseCondition(String conditionString) {
+    private CondExpr parseCondition(int i, String conditionString) {
         conditionString = conditionString.trim();
 
         // If the condition string is empty, return null or handle it according to your requirements
@@ -86,6 +91,7 @@ public class OutputTupleAttributes {
 
             int columnNo = columnarFile.getColumnNo(column);
             AttrType attrType = columnarFile.getAttrTypes()[columnNo];
+            conditionAttrs[i] = attrType;
 
             CondExpr condExpr = new CondExpr();
             condExpr.type1 = new AttrType(AttrType.attrSymbol);
@@ -173,6 +179,10 @@ public class OutputTupleAttributes {
         }
 
         return stringBuilder.toString();
+    }
+
+    public AttrType[] getConditionAttrs() {
+        return conditionAttrs;
     }
 
 
