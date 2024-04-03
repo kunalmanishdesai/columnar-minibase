@@ -276,7 +276,7 @@ ExtendedSystemDefs.MINIBASE_RELCAT.getInfo(relation, relRec);
 
  // LOADS INDEXES
  void loadIndexesUT(Tuple tuple, int attrCnt, int indexCnt,
-     AttrDesc [] attrs, IndexDesc [] indexes, void [] iFiles, RID rid ){};
+     AttrDesc [] attrs, IndexDesc [] indexes, RID rid ){}
 
 //-------------------------------
 // TYPECHECK INTS
