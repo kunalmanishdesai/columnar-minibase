@@ -1,0 +1,46 @@
+#!/bin/bash
+
+# Set JDK, LIB, and BIN paths
+JDKPATH="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"
+LIBPATH="..:."
+CLASSPATH="$LIBPATH"
+BINPATH="$JDKPATH/bin"
+JAVAC="$BINPATH/javac -classpath $CLASSPATH"
+JAVA="$BINPATH/java -classpath $CLASSPATH"
+
+# Get the last argument
+last_arg="${@: -1}"
+# Concatenate all the arguments except the last one into one string
+rest_args="${@:1:$#-1}"
+# Compile and execute different Java program based on the last argument
+case "$last_arg" in
+    "FILESCAN")
+        $JAVAC FileScan.java
+        if [ $? -ne 0 ]; then
+            echo "Compilation failed. Exiting."
+            exit 1
+        fi
+        $JAVA FileScan.java "$rest_args" ;;
+    "ColumnScan")
+        $JAVAC ColumnScan.java
+        if [ $? -ne 0 ]; then
+            echo "Compilation failed. Exiting."
+            exit 1
+        fi
+        $JAVA ColumnScan.java "$rest_args" ;;
+    "BTree")
+        $JAVAC BTreeScan.java
+        if [ $? -ne 0 ]; then
+            echo "Compilation failed. Exiting."
+            exit 1
+        fi
+        $JAVA BTreeScan.java "$rest_args" ;;
+    "Bitmap")
+        $JAVAC BitmapScan.java
+        if [ $? -ne 0 ]; then
+            echo "Compilation failed. Exiting."
+            exit 1
+        fi
+        $JAVA BitmapScan.java "$rest_args" ;;
+    *)  echo "Unknown input. Exiting." ;;
+esac
