@@ -4,10 +4,7 @@ import global.AttrType;
 import global.RID;
 import global.TID;
 import heap.*;
-import iterator.CondExpr;
-import iterator.FldSpec;
-import iterator.PredEval;
-import iterator.Projection;
+import iterator.*;
 
 import java.io.IOException;
 
@@ -22,13 +19,29 @@ public class TupleScan {
 //    private final CondExpr[] condExpr;
     private final ColumnarFile columnarFile;
 
+    private final OutputTupleAttributes outputTupleAttributes;
+
+    private final int n_out_flds;
+
+    private final Tuple Jtuple;
+
     private final Scan tidFileScan;
 
     private final Scan[] columnScans;
 
 
-    public TupleScan(ColumnarFile columnarFile, AttrType[] outputAttr, FldSpec[] prjSpec, CondExpr[] condExpr) {
+    //AttrType[] outputAttr, FldSpec[] prjSpec, CondExpr[] condExpr
+    public TupleScan(ColumnarFile columnarFile, OutputTupleAttributes outputTupleAttributes) {
         this.columnarFile = columnarFile;
+        this.outputTupleAttributes = outputTupleAttributes;
+
+        n_out_flds = outputTupleAttributes.getProdSpec().length;
+        Jtuple =  new Tuple();
+        try {
+            TupleUtils.setup_op_tuple(Jtuple, new AttrType[n_out_flds], columnarFile.getAttrTypes(), columnarFile.getNumColumns(), new short[] {30,30,30}, outputTupleAttributes.getProdSpec(), n_out_flds);
+        } catch (IOException | TupleUtilsException | InvalidRelation e) {
+            throw new RuntimeException("Error setting output tuple",e);
+        }
 
         try {
             tidFileScan = columnarFile.getTidFile().openScan();
@@ -70,16 +83,16 @@ public class TupleScan {
                     Utils.insertIntoTuple(columnarFile.getAttrTypes()[i],columnTuple,i+1,oTuple);
                 }
 
-//                if (PredEval.Eval(, tuple1, null, _in1, null) == true){
-//                    Projection.Project(tuple1, _in1,  Jtuple, perm_mat, nOutFlds);
-//                    return  Jtuple;
-//                }
-
-                if (tid1.isDeleted()) {
-                    continue;
+                try {
+                    if (!tid1.isDeleted() && PredEval.Eval(outputTupleAttributes.getCondExprs(), oTuple, null, columnarFile.getAttrTypes(), null)){
+                        Projection.Project(oTuple, columnarFile.getAttrTypes(),  Jtuple, outputTupleAttributes.getProdSpec(), n_out_flds);
+                        return  Jtuple;
+                    }
+                } catch (UnknowAttrType | FieldNumberOutOfBoundException | PredEvalException e) {
+                    throw new RuntimeException("Error checking condition",e);
+                } catch (InvalidTypeException | WrongPermat e) {
+                    throw new RuntimeException("Error projection tuple",e);
                 }
-
-                return oTuple;
 
             } catch (InvalidTupleSizeException | IOException e) {
                 throw new RuntimeException("Error fetching next tuple",e);
