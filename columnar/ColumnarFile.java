@@ -85,7 +85,8 @@ public class ColumnarFile {
             RID rid = new RID();
 
             for (int i = 0; i < numColumns; i++) {
-                columnFiles[i] = new ColumnFile(scan.getNext(rid).getTupleByteArray(),rid);
+                columnFiles[i] = new ColumnFile(scan.getNext(rid).getTupleByteArray());
+                columnFiles[i].rid = new RID(rid.pageNo, rid.slotNo);
             }
 
             scan.closescan();
@@ -119,7 +120,9 @@ public class ColumnarFile {
                 ColumnFile columnFile = columnFiles[i];
                 Tuple columnTuple = Utils.insertValue(columnFile.getAttrType(),tuple,i+1);
                 if (columnFile.hasBtree()) {
-                    columnFile.getBtreeFile().insert(Utils.createKey(columnFile.getAttrType(),columnTuple),tidRid);
+                    BTreeFile bTreeFile = columnFile.getBtreeFile();
+                    bTreeFile.insert(Utils.createKey(columnFile.getAttrType(),columnTuple),tidRid);
+                    bTreeFile.close();
                 }
             }
 
@@ -127,12 +130,14 @@ public class ColumnarFile {
 
         } catch (SpaceNotAvailableException | HFBufMgrException | InvalidTupleSizeException |
                  InvalidSlotNumberException | HFException | HFDiskMgrException | IOException e) {
-            throw new RuntimeException("Error inserting record",e);
+            throw new RuntimeException("Error inserting record", e);
         } catch (IteratorException | ConstructPageException | ConvertException | InsertException |
                  IndexInsertRecException | LeafDeleteException | NodeNotMatchException | LeafInsertRecException |
                  PinPageException | UnpinPageException | DeleteRecException | KeyTooLongException |
                  KeyNotMatchException | IndexSearchException e) {
             throw new RuntimeException("Error inserting into btree",e);
+        } catch (HashEntryNotFoundException | InvalidFrameNumberException | PageUnpinnedException | ReplacerException e) {
+            throw new RuntimeException("Error closing BTree file",e);
         }
     }
 
@@ -149,7 +154,11 @@ public class ColumnarFile {
 
         for (int i =0; i< getNumColumns();i++) {
 
-            Tuple columnTuple = new Tuple(columnFiles[i].getFile().getRecord(tid.getRid(i)).getTupleByteArray());
+            Tuple tuples = columnFiles[i].getFile().getRecord(tid.getRid(i));
+
+            Tuple columnTuple = new Tuple(tuples.getTupleByteArray());
+
+            ValueClass valueClass = Utils.getValue(columnFiles[i].getAttrType(), columnTuple,1);
 //                tid.setRid(i,tid1.getRid(i));
             Utils.insertIntoTuple(getAttrTypes()[i],columnTuple,i+1,oTuple);
             }
