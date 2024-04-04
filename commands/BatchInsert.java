@@ -78,8 +78,6 @@ public class BatchInsert {
             throw new RuntimeException("Error reading file",e);
         }
 
-
-
         System.out.println("Total number of records (" +position + " - " +startPosition+") entered: " + (position-startPosition));
     }
 
@@ -118,7 +116,10 @@ public class BatchInsert {
     }
 
 
-    public static void main (String[] command) {
+    public static void main (String[] args) {
+
+        String[] command = args;
+//        String[] command = "./src/test_data/5-50000b.txt testdb test1 5 false".split(" ");
 
         if (command.length != 5) {
             System.out.println("Error: Incorrect number of input values.");
@@ -135,7 +136,7 @@ public class BatchInsert {
         String dbpath = "/tmp/"+columnDBName;
 
         SystemDefs.MINIBASE_RESTART_FLAG = flag;
-        SystemDefs sysdef = new SystemDefs( dbpath, 10000, 300, "Clock" );
+        SystemDefs sysdef = new SystemDefs( dbpath, 100000, 800, "Clock" );
 
 
         try (BufferedReader br = new BufferedReader( new FileReader(dataFileName))) {
