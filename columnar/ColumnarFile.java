@@ -1,5 +1,6 @@
 package columnar;
 
+import btree.*;
 import bufmgr.HashEntryNotFoundException;
 import bufmgr.InvalidFrameNumberException;
 import bufmgr.PageUnpinnedException;
@@ -112,12 +113,26 @@ public class ColumnarFile {
                 tid.setRid(i,rid);
             }
 
-            tidFile.insertRecord(tid.getBytes());
+            RID tidRid = tidFile.insertRecord(tid.getBytes());
+
+            for (int i = 0; i< numColumns;i++) {
+                ColumnFile columnFile = columnFiles[i];
+                Tuple columnTuple = Utils.insertValue(columnFile.getAttrType(),tuple,i+1);
+                if (columnFile.hasBtree()) {
+                    columnFile.getBtreeFile().insert(Utils.createKey(columnFile.getAttrType(),columnTuple),tidRid);
+                }
+            }
+
             return tid;
 
         } catch (SpaceNotAvailableException | HFBufMgrException | InvalidTupleSizeException |
                  InvalidSlotNumberException | HFException | HFDiskMgrException | IOException e) {
             throw new RuntimeException("Error inserting record",e);
+        } catch (IteratorException | ConstructPageException | ConvertException | InsertException |
+                 IndexInsertRecException | LeafDeleteException | NodeNotMatchException | LeafInsertRecException |
+                 PinPageException | UnpinPageException | DeleteRecException | KeyTooLongException |
+                 KeyNotMatchException | IndexSearchException e) {
+            throw new RuntimeException("Error inserting into btree",e);
         }
     }
 
