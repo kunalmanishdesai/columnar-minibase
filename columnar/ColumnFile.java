@@ -45,7 +45,7 @@ public class ColumnFile {
         }
     }
 
-    public ColumnFile(byte[] data,RID rid) {
+    public ColumnFile(byte[] data) {
         try {
             Tuple tuple = new Tuple(data);
             name = tuple.getStrFld(1);
@@ -86,12 +86,16 @@ public class ColumnFile {
 
             Tuple tuple;
             while ((tuple = dataFileScan.getNext(scanRID)) != null) {
-                tidFileScan.getNext(tidRID);
-                bTreeFile.insert(Utils.createKey(attrType,tuple), tidRID);
+                Tuple tuple1 = new Tuple(tuple.getTupleByteArray());
+                Tuple tidTuple = tidFileScan.getNext(tidRID);
+
+                TID tid = new TID(tidTuple.getTupleByteArray());
+                bTreeFile.insert(Utils.createKey(attrType,tuple1), tidRID);
             }
 
             tidFileScan.closescan();
             dataFileScan.closescan();
+            bTreeFile.close();
         } catch (InvalidTupleSizeException | IOException e) {
             throw new RuntimeException("error scanning",e);
         } catch (Exception e) {
