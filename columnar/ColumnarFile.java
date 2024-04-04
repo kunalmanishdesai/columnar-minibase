@@ -62,7 +62,7 @@ public class ColumnarFile {
         for(int i = 0 ; i< numColumns;i++) {
             columnFiles[i] = new ColumnFile(name+"."+i, columnNames[i], attrTypes[i]);
             try {
-                headerFile.insertRecord(columnFiles[i].getBytes());
+                columnFiles[i].rid = headerFile.insertRecord(columnFiles[i].getBytes());
             } catch (InvalidSlotNumberException | InvalidTupleSizeException | SpaceNotAvailableException | HFException |
                      HFBufMgrException | HFDiskMgrException | IOException e) {
                 throw new RuntimeException("Error inserting records",e);
@@ -84,7 +84,7 @@ public class ColumnarFile {
             RID rid = new RID();
 
             for (int i = 0; i < numColumns; i++) {
-                columnFiles[i] = new ColumnFile(scan.getNext(rid).getTupleByteArray());
+                columnFiles[i] = new ColumnFile(scan.getNext(rid).getTupleByteArray(),rid);
             }
 
             scan.closescan();
@@ -108,12 +108,11 @@ public class ColumnarFile {
 
             for (int i = 0; i< numColumns;i++) {
                 ColumnFile columnFile = columnFiles[i];
-                RID rid = columnFile.getFile().insertRecord(Utils.insertValue(columnFile.getAttrType(),tuple,i+1).getTupleByteArray());
+                RID rid = columnFile.insert(Utils.insertValue(columnFile.getAttrType(),tuple,i+1));
                 tid.setRid(i,rid);
             }
 
             tidFile.insertRecord(tid.getBytes());
-
             return tid;
 
         } catch (SpaceNotAvailableException | HFBufMgrException | InvalidTupleSizeException |
@@ -165,6 +164,16 @@ public class ColumnarFile {
             columnNames[i] = columnFiles[i].getColumnName();
         }
         return columnNames;
+    }
+
+    public boolean createBtreeIndex(int colNo) {
+        boolean btree = columnFiles[colNo].createBtree(tidFile);
+        try {
+            headerFile.updateRecord(columnFiles[colNo].rid, new Tuple(columnFiles[colNo].getBytes(), 0,columnFiles[colNo].getBytes().length));
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating header file",e);
+        }
+        return btree;
     }
 
     public int getRecordCount() {

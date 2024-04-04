@@ -1,6 +1,8 @@
 package columnar;
 
+import btree.*;
 import global.AttrType;
+import global.RID;
 import heap.*;
 
 import java.io.IOException;
@@ -27,6 +29,8 @@ public class ColumnFile {
 
     private boolean hasBitmap = false;
 
+    public RID rid = null;
+
 
     public ColumnFile(String columnFileName, String columnName, AttrType attrType) {
         this.name = columnFileName;
@@ -40,7 +44,7 @@ public class ColumnFile {
         }
     }
 
-    public ColumnFile(byte[] data) {
+    public ColumnFile(byte[] data,RID rid) {
         try {
             Tuple tuple = new Tuple(data);
             name = tuple.getStrFld(1);
@@ -48,6 +52,7 @@ public class ColumnFile {
             attrType = new AttrType(tuple.getIntFld(3));
             hasBtree = tuple.getIntFld(4) == 1;
             hasBitmap = tuple.getIntFld(5) == 1;
+            this.rid = rid;
 
             try {
                 dataFile = new Heapfile(name);
@@ -59,6 +64,50 @@ public class ColumnFile {
             throw new RuntimeException("Error creating tuple",e);
         } catch (FieldNumberOutOfBoundException e) {
             throw new RuntimeException("Error getting field",e);
+        }
+    }
+
+    public boolean createBtree(Heapfile tidFile) {
+
+        BTreeFile bTreeFile;
+        try {
+             bTreeFile = new BTreeFile(name+".BT");
+        } catch (GetFileEntryException | PinPageException | ConstructPageException e) {
+            throw new RuntimeException("Error creating btree file");
+        }
+
+        try {
+            Scan dataFileScan = dataFile.openScan();
+            Scan tidFileScan = tidFile.openScan();
+
+            RID scanRID = new RID();
+            RID tidRID = new RID();
+
+            Tuple tuple;
+            while ((tuple = dataFileScan.getNext(scanRID)) != null) {
+                tidFileScan.getNext(tidRID);
+                bTreeFile.insert(Utils.createKey(attrType,tuple), tidRID);
+            }
+
+            tidFileScan.closescan();
+            dataFileScan.closescan();
+        } catch (InvalidTupleSizeException | IOException e) {
+            throw new RuntimeException("error scanning",e);
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating btree index",e);
+        }
+
+        hasBtree = true;
+
+        return true;
+    }
+
+    public RID insert(Tuple tuple) {
+        try {
+            return dataFile.insertRecord(tuple.getTupleByteArray());
+        } catch (InvalidSlotNumberException | InvalidTupleSizeException | SpaceNotAvailableException |
+                 HFException | HFBufMgrException | HFDiskMgrException | IOException e) {
+            throw new RuntimeException("Error inserting record",e);
         }
     }
 
