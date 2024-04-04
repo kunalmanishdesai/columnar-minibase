@@ -2,7 +2,7 @@
 
 # Set JDK, LIB, and BIN paths
 JDKPATH="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"
-LIBPATH="../..:."
+LIBPATH="..:."
 CLASSPATH="$LIBPATH"
 BINPATH="$JDKPATH/bin"
 JAVAC="$BINPATH/javac -classpath $CLASSPATH"
