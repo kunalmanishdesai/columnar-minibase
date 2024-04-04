@@ -3,6 +3,7 @@ package columnar;
 import btree.*;
 import global.AttrType;
 import global.RID;
+import global.TID;
 import heap.*;
 
 import java.io.IOException;
@@ -71,8 +72,8 @@ public class ColumnFile {
 
         BTreeFile bTreeFile;
         try {
-             bTreeFile = new BTreeFile(name+".BT");
-        } catch (GetFileEntryException | PinPageException | ConstructPageException e) {
+             bTreeFile = new BTreeFile(name+".BT", attrType.attrType, 30, DeleteFashion.FULL_DELETE);
+        } catch (GetFileEntryException | ConstructPageException | AddFileEntryException | IOException e) {
             throw new RuntimeException("Error creating btree file");
         }
 
@@ -167,5 +168,13 @@ public class ColumnFile {
         }
 
         return tuple.getTupleByteArray();
+    }
+
+    public BTreeFile getBtreeFile() {
+        try {
+            return new BTreeFile(name+".BT");
+        } catch (GetFileEntryException | PinPageException| ConstructPageException e) {
+            throw new RuntimeException("Error getting btree",e);
+        }
     }
 }
