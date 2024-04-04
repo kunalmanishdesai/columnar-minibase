@@ -31,7 +31,7 @@ public class FileScan extends ScanCommand {
     //COLUMNDBNAME COLUMNARFILENAME [TARGETCOLUMNNAMES] VALUECONSTRAINT NUMBUF ACCESSTYPE
     public static void main(String[] command) {
 
-//        String test = "testdb test1 [A,B,C,D] {(A = New_Mexico) AND (B = Zimbabwe)} 12";
+//        String test = "testdb test1 [A,B,C,D,E] {(A = Washington)  AND (B = Oregon)} 12";
         String test = command[0];
         FileScan fileScan = new FileScan(test);
         fileScan.execute();
