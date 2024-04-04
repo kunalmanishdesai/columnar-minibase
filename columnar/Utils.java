@@ -1,5 +1,8 @@
 package columnar;
 
+import btree.IntegerKey;
+import btree.KeyClass;
+import btree.StringKey;
 import global.AttrType;
 import global.ValueClass;
 import heap.FieldNumberOutOfBoundException;
@@ -111,5 +114,26 @@ public class Utils {
         }
 
         return String.join("\t", formattedColumnNames);
+    }
+
+    public static KeyClass createKey(AttrType attrType, Tuple tuple) {
+
+        try {
+            switch (attrType.attrType) {
+                case AttrType.attrString -> {
+                    return new StringKey(tuple.getStrFld(1));
+                }
+
+                case AttrType.attrInteger -> {
+                    return new IntegerKey(tuple.getIntFld(1));
+                }
+
+                default ->
+                        throw new IllegalArgumentException("Implementation for key" + attrType.attrType + "not found");
+            }
+        } catch (FieldNumberOutOfBoundException | IOException e) {
+            throw new RuntimeException("Error extracting field from tuple",e);
+        }
+
     }
 }
