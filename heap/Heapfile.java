@@ -127,18 +127,7 @@ public class Heapfile implements Filetype,  GlobalConst {
 		}
 	      
 	      DataPageInfo dpinfo = new DataPageInfo(atuple);
-	      try{
-		pinPage(dpinfo.pageId, currentDataPage, false/*Rddisk*/);
-		
-		
-		//check error;need unpin currentDirPage
-	      }catch (Exception e)
-		{
-		  unpinPage(currentDirPageId, false/*undirty*/);
-		  dirpage = null;
-		  datapage = null;
-		  throw e;
-		}
+
 	      
 	      
 	      
@@ -148,6 +137,19 @@ public class Heapfile implements Filetype,  GlobalConst {
 	      
 	      if(dpinfo.pageId.pid==rid.pageNo.pid)
 		{
+
+			try{
+				pinPage(dpinfo.pageId, currentDataPage, false/*Rddisk*/);
+
+
+				//check error;need unpin currentDirPage
+			}catch (Exception e)
+			{
+				unpinPage(currentDirPageId, false/*undirty*/);
+				dirpage = null;
+				datapage = null;
+				throw e;
+			}
 		  atuple = currentDataPage.returnRecord(rid);
 		  // found user's record on the current datapage which itself
 		  // is indexed on the current dirpage.  Return both of these.
@@ -161,13 +163,6 @@ public class Heapfile implements Filetype,  GlobalConst {
 		  rpDataPageRid.pageNo.pid = currentDataPageRid.pageNo.pid;
 		  rpDataPageRid.slotNo = currentDataPageRid.slotNo;
 		  return true;
-		}
-	      else
-		{
-		  // user record not found on this datapage; unpin it
-		  // and try the next one
-		  unpinPage(dpinfo.pageId, false /*undirty*/);
-		  
 		}
 	      
 	    }
