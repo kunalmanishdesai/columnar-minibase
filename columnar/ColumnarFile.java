@@ -234,4 +234,8 @@ public class ColumnarFile {
 
         return  -1;
     }
+
+    public boolean createBitmap(int colNo) {
+        return columnFiles[colNo].createBitmap();
+    }
 }
