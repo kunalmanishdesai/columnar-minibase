@@ -10,7 +10,7 @@ public class Index {
 
     public static void main(String [] command) {
 
-//        command = "testdb test1 A BTREE".split(" ");
+        command = "testdb test1 A BITMAP".split(" ");
         if (command.length != 4) {
             System.out.println("Error: Incorrect number of input values.");
             return;
@@ -27,9 +27,8 @@ public class Index {
 
         ColumnarFile columnarFile = new ColumnarFile(columnarFileName);
         if(indexType.equals("BITMAP")) {
-
+            columnarFile.createBtreeIndex(columnarFile.getColumnNo(columnName));
         } else if(indexType.equals("BTREE")) {
-//            columnarFile.createBTreeIndex(columnNo-1);
             columnarFile.createBtreeIndex(columnarFile.getColumnNo(columnName));
         } else {
             System.out.println("Error: Incorrect index type.");
