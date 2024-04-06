@@ -65,6 +65,7 @@ public class BMPage extends HFPage {
     try {
 
       SystemDefs.JavabaseBM.pinPage(pageId, this, false);
+      curPage = new PageId(Convert.getIntValue(CUR_PAGE_POS,data));
       slotsUsed = Convert.getShortValue(SLOTS_USED_POS,data);
     } catch (Exception e) {
       throw new ConstructPageException(e, "pinpage failed");
