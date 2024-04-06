@@ -9,7 +9,7 @@ import heap.*;
 
 import java.io.IOException;
 
-public class BitmapFile extends IndexFile implements GlobalConst {
+public class BitmapFile implements GlobalConst {
 
     private static final int MAX_RECORD_COUNT = 1008;
     public final Heapfile headerFile;
@@ -29,7 +29,7 @@ public class BitmapFile extends IndexFile implements GlobalConst {
     private void accessColumn(ColumnFile columnFile, ValueClass value) throws Exception {
         try {
             Scan columnScan = columnFile.getFile().openScan();
-            Tuple tuple = new Tuple();
+            Tuple tuple;
             RID rid = new RID();
 
             BMPage bmPage = new BMPage();
@@ -45,73 +45,39 @@ public class BitmapFile extends IndexFile implements GlobalConst {
                     }
                 } else {
                     headerFile.insertRecord(new BMDataPageInfo(bmPage.curPage,1, MAX_RECORD_COUNT).convertToTuple().getTupleByteArray());
-                    unpinPage(bmPage.curPage, false);
+                    unpinPage(bmPage.curPage, true);
                     bmPage = new BMPage();
                 }
                 
-                headerFile.insertRecord(
-                    new BMDataPageInfo(bmPage.curPage,
-                    bmPage.isSpaceAvailable() ? 0 : 1 , 
-                    MAX_RECORD_COUNT).convertToTuple().getTupleByteArray());
-                
-                    unpinPage(bmPage.curPage, false);
+
             }
+
+            headerFile.insertRecord(
+                    new BMDataPageInfo(bmPage.curPage,
+                            bmPage.isSpaceAvailable() ? 0 : 1 ,
+                            MAX_RECORD_COUNT).convertToTuple().getTupleByteArray());
+
+            unpinPage(bmPage.curPage, true);
             columnScan.closescan();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public Integer getBit(PageId pageId, int indexPagePos) throws InvalidSlotNumberException, InvalidTupleSizeException, HFException, HFDiskMgrException, HFBufMgrException, Exception {
-	    BMPage page = new BMPage(pageId);
-        return page.getBit(indexPagePos);
-    }
-
     private boolean isValueGreaterThanEqualToTuple(ValueClass value, Tuple tuple) throws IOException, FieldNumberOutOfBoundException {
+        Tuple xTuple = new Tuple(tuple.getTupleByteArray());
+
         if (value instanceof ValueInt) {
-            return ((ValueInt) value).getValue() >= Convert.getIntValue(0, tuple.getTupleByteArray());
+            return ((ValueInt) value).getValue() >= xTuple.getIntFld(1);
         } else if (value instanceof ValueString) {
 
-            short size = Convert.getShortValue(0, tuple.getTupleByteArray());
-            String record = Convert.getStrValue(0, tuple.getTupleByteArray(), size +2 );
+            String record = xTuple.getStrFld(1);
 
             return ((ValueString) value).getValue().compareTo(record) >= 0;
         }
         return false;
     }
 
-    public boolean insert(int position) throws IOException, PinPageException, UnpinPageException, ConstructPageException, InvalidTupleSizeException, FieldNumberOutOfBoundException {
-		return set(position,1);	 
-	}
-
-    public boolean delete(int position) throws IOException, PinPageException, UnpinPageException, ConstructPageException, InvalidTupleSizeException, FieldNumberOutOfBoundException {
-		return set(position,0);	 
-	}
-
-    public boolean set(int position, int bit) throws IOException, ConstructPageException, InvalidTupleSizeException, FieldNumberOutOfBoundException, PinPageException, UnpinPageException {
-
-        int currentDataPage = 1;
-        Tuple tuple;
-
-        RID rid = new RID();
-        Scan scan = headerFile.openScan();
-
-        while (position > (currentDataPage*MAX_RECORD_COUNT)) {
-            tuple = scan.getNext(rid);
-        }
-
-        tuple = scan.getNext(rid);
-        BMDataPageInfo bmDataPageInfo = new BMDataPageInfo(tuple);
-
-        BMPage bmPage = new BMPage(bmDataPageInfo.pageId);
-
-        pinPage(bmPage.curPage);
-
-        int pagePosition = position - (currentDataPage-1)*MAX_RECORD_COUNT;
-        bmPage.setBit( pagePosition, (byte)bit);
-        unpinPage(bmPage.curPage, false);
-		return true;
-	}
   
   /** Destroy entire Bitmap file.
    *@exception IOException  error from the lower layer
@@ -183,22 +149,5 @@ public class BitmapFile extends IndexFile implements GlobalConst {
 	    throw new FreePageException(e,"");
       } 
       
-    }
-
-    @Override
-    public void insert(KeyClass data, RID rid) throws KeyTooLongException, KeyNotMatchException, LeafInsertRecException,
-            IndexInsertRecException, ConstructPageException, UnpinPageException, PinPageException,
-            NodeNotMatchException, ConvertException, DeleteRecException, IndexSearchException, IteratorException,
-            LeafDeleteException, InsertException, IOException {
-        throw new UnsupportedOperationException("Unimplemented method 'insert'");
-    }
-
-    @Override
-    public boolean Delete(KeyClass data, RID rid)
-            throws DeleteFashionException, LeafRedistributeException, RedistributeException, InsertRecException,
-            KeyNotMatchException, UnpinPageException, IndexInsertRecException, FreePageException,
-            RecordNotFoundException, PinPageException, IndexFullDeleteException, LeafDeleteException, IteratorException,
-            ConstructPageException, DeleteRecException, IndexSearchException, IOException {
-        throw new UnsupportedOperationException("Unimplemented method 'Delete'");
     }
 }
