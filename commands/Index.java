@@ -1,5 +1,6 @@
 package commands;
 
+import bitmap.BitmapUtil;
 import bufmgr.*;
 import columnar.ColumnarFile;
 import global.SystemDefs;
@@ -26,10 +27,13 @@ public class Index {
         SystemDefs sysdef = new SystemDefs( dbpath, 0, 300, "Clock" );
 
         ColumnarFile columnarFile = new ColumnarFile(columnarFileName);
+        int colNo = columnarFile.getColumnNo(columnName);
         if(indexType.equals("BITMAP")) {
-            columnarFile.createBtreeIndex(columnarFile.getColumnNo(columnName));
+            columnarFile.createBitmap(colNo);
         } else if(indexType.equals("BTREE")) {
-            columnarFile.createBtreeIndex(columnarFile.getColumnNo(columnName));
+            columnarFile.createBtreeIndex(colNo);
+        } else  if (indexType.equals("PBITMAP")) {
+            BitmapUtil.printBitmap(columnarFile.getColumnFile(colNo).getName()+".BM.hdr",columnarFile);
         } else {
             System.out.println("Error: Incorrect index type.");
         }
