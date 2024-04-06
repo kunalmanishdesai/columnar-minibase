@@ -2,9 +2,14 @@
 
 package diskmgr;
 
-import java.io.*;
-import bufmgr.*;
-import global.*;
+import global.Convert;
+import global.GlobalConst;
+import global.PageId;
+import global.SystemDefs;
+
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 
 public class DB implements GlobalConst {
 
@@ -456,8 +461,13 @@ public class DB implements GlobalConst {
 	
 	// Pin the newly-allocated directory page.
 	hpid.pid = nexthpid.pid;
-	
-	pinPage(hpid, apage, true/*no diskIO*/);
+
+    //there is some issue with DBDirectoryPage or dp.setFileEntry
+    // due to which filenames are not properly written
+    //onto new page.
+    // a simpler solution(not efficient) is to get an empty new page
+
+	pinPage(hpid, apage, false );
 	dp = new DBDirectoryPage(apage);
 	
 	free_slot = 0;
