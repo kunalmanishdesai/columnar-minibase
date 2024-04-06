@@ -1,17 +1,18 @@
 package bitmap;
 
 import columnar.ColumnFile;
+import columnar.ColumnarFile;
 import columnar.Utils;
 import global.RID;
-import global.TupleOrder;
 import global.ValueClass;
 import heap.Heapfile;
 import heap.Scan;
 import heap.Tuple;
-import iterator.*;
+import iterator.FldSpec;
+import iterator.RelSpec;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 
@@ -29,7 +30,8 @@ public class BitmapUtil {
         Tuple tuple;
 
         while ((tuple = scan.getNext(rid))!=null) {
-            ValueClass value = Utils.getValue(columnFile.getAttrType(),tuple,1);
+
+            ValueClass value = Utils.getValue(columnFile.getAttrType(),new Tuple(tuple.getTupleByteArray()),1);
             String fileName = columnFile.getName() + ".BT." + value + ".hdr";
 
             if (!hashSet.contains(fileName)) {
@@ -49,31 +51,81 @@ public class BitmapUtil {
         projlist[0] = new FldSpec(rel, 1);
         projlist[1] = new FldSpec(rel, 2);
 
-        FileScan scan = null;
+        Scan scan = null;
         try {
-            scan = new FileScan(headerFileName, BitMapFileMeta.getAttrTypes(),new short[] {30,30}, (short) 2,2,projlist,null);
-        } catch (IOException | FileScanException | TupleUtilsException | InvalidRelation e) {
+//            scan = new FileScan(headerFileName, BitMapFileMeta.getAttrTypes(),new short[] {30,30}, (short) 2,2,projlist,null);
+            scan = new Heapfile(headerFileName).openScan();
+        } catch (Exception e) {
             throw new RuntimeException("Error Scanning",e);
         }
 
-        Sort sort = null;
-        try {
-            sort = new Sort(BitMapFileMeta.getAttrTypes(), (short) 2, new short[] {30,30}, scan, 2, new TupleOrder(TupleOrder.Ascending), 30, 10);
-        } catch (IOException | SortException e) {
-            throw new RuntimeException("Error sorting",e);
-        }
+//        Sort sort = null;
+//        try {
+//            sort = new Sort(BitMapFileMeta.getAttrTypes(), (short) 2, new short[] {30,30}, scan, 2, new TupleOrder(TupleOrder.Ascending), 30, 10);
+//        } catch (IOException | SortException e) {
+//            throw new RuntimeException("Error sorting",e);
+//        }
 
         List<BitMapFileMeta> BMFileList = new ArrayList<>();
 
+
         try{
-            while ((tuple = sort.get_next()) != null) {
+            while ((tuple = scan.getNext(rid)) != null) {
                 BitMapFileMeta bitMapFileMeta = new BitMapFileMeta(tuple.getTupleByteArray());
                 BMFileList.add(bitMapFileMeta);
             }
         } catch (Exception e) {
             throw new RuntimeException("Error fetching tuple from sort",e);
         }
+        scan.closescan();
 
+        BMFileList.sort(Comparator.comparing(BitMapFileMeta::getValue));
         return BMFileList;
+    }
+
+    public static void printBitmap(String headerFileName, ColumnarFile columnarFile) {
+        List<BitMapFileMeta> bitMapFileMetaList = getBitmap(headerFileName);
+
+        List<BMFileScan> scans = bitMapFileMetaList.stream()
+                .map(bitMapFileMeta -> new BMFileScan(bitMapFileMeta.getName()))
+                .toList();
+
+        for (BitMapFileMeta bitMapFileMeta : bitMapFileMetaList) {
+            String value = bitMapFileMeta.value;
+            System.out.printf("%-12s | ", value); // Adjust the spacing as needed
+        }
+
+        System.out.println();
+
+        boolean stopFlag = false;
+        int position = 0;
+
+        while (position < columnarFile.getRecordCount()) {
+            Integer bit;
+            for (BMFileScan scan : scans) {
+                bit = scan.getNext();
+
+                if (bit == null) {
+                    stopFlag = true;
+                    break;
+                }
+
+                System.out.printf("%-12s | ", bit); // Adjust the spacing as needed
+            }
+
+            position += 1;
+            if (stopFlag) {
+                if (position != columnarFile.getRecordCount()) {
+                    System.out.println("broke in between" + position);
+                }
+                break;
+            }
+
+            System.out.println();
+        }
+
+        for (BMFileScan scan : scans) {
+            scan.closeScan();
+        }
     }
 }
