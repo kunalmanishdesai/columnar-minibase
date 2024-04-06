@@ -1,10 +1,6 @@
 package bitmap;
 
-import columnar.ValueFloat;
-import columnar.ValueInt;
-import columnar.ValueString;
 import global.AttrType;
-import global.ValueClass;
 import heap.FieldNumberOutOfBoundException;
 import heap.Tuple;
 
@@ -54,5 +50,9 @@ public class BitMapFileMeta {
 
     public static AttrType[] getAttrTypes() {
         return attrTypes;
+    }
+
+    public String getValue() {
+        return value;
     }
 }
