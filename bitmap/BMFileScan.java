@@ -13,17 +13,16 @@ import java.io.IOException;
 
 public class BMFileScan {
 
+    private final String filename;
     private Scan bitMapFileScan;
 
     private BMPage bmPage;
-
-    private int position = 1009;
 
     private RID rid = new RID();
 
     private BMDataPageInfo bmDataPageInfo;
 
-    private int pinned = 0;
+    private Integer bit;
 
     private static final int MAX_RECORD_COUNT = 1008;
 
@@ -44,45 +43,37 @@ public class BMFileScan {
 
     public Integer getNext() {
 
-        if ( position > MAX_RECORD_COUNT) {
-            try {
+        if ( (bmPage != null) && (bit = bmPage.getNextBit()) != null) {
+            return bit;
+        }
 
-                Tuple tuple = bitMapFileScan.getNext(rid);
+        try {
 
-                if(tuple == null) {
-                    return null;
-                }
+            Tuple tuple = bitMapFileScan.getNext(rid);
 
-                bmDataPageInfo = new BMDataPageInfo(tuple);
-
-                if (bmPage != null) {
-                    SystemDefs.JavabaseBM.unpinPage(bmPage.curPage, false);
-                }
-
-                bmPage = new BMPage(bmDataPageInfo.pageId);
-            } catch (FieldNumberOutOfBoundException | InvalidTupleSizeException | IOException e) {
-                // TODO Auto-generated catch block
-              throw new RuntimeException("Error getting bmDataPageInfo", e);
-            } catch (HashEntryNotFoundException | InvalidFrameNumberException | PageUnpinnedException |
-                     ReplacerException e) {
-                throw new RuntimeException("Error unpinning page",e);
-            } catch (ConstructPageException e) {
-                throw new RuntimeException("Error getting bmpage",e);
+            if(tuple == null) {
+                return null;
             }
 
-            if(rid == null) return null;
-            position = 0;  
-        }
+            bmDataPageInfo = new BMDataPageInfo(tuple);
 
-        Integer bit;
-        try {
-            bit = bmPage.getBit(position);
-        } catch ( Exception e) {
+            if (bmPage != null) {
+                SystemDefs.JavabaseBM.unpinPage(bmPage.curPage, false);
+            }
+
+            bmPage = new BMPage(bmDataPageInfo.pageId);
+
+            bit = bmPage.getNextBit();
+            return bit;
+        } catch (FieldNumberOutOfBoundException | InvalidTupleSizeException | IOException e) {
             // TODO Auto-generated catch block
-            throw new RuntimeException("error getting bit",e);
+            throw new RuntimeException("Error getting bmDataPageInfo", e);
+        } catch (HashEntryNotFoundException | InvalidFrameNumberException | PageUnpinnedException |
+                 ReplacerException e) {
+            throw new RuntimeException("Error unpinning page",e);
+        } catch (ConstructPageException e) {
+            throw new RuntimeException("Error getting bmpage",e);
         }
-        position++;
-        return bit;
     }
 
     public void closeScan() {
