@@ -14,9 +14,10 @@ import java.io.IOException;
 public class BMFileScan {
 
     private final String filename;
-    private Scan bitMapFileScan;
+    private final BitmapType bitmapType;
+    private final Scan bitMapFileScan;
 
-    private BMPage bmPage;
+    private BMPageInterface bmPage;
 
     private RID rid = new RID();
 
@@ -26,10 +27,12 @@ public class BMFileScan {
 
     private static final int MAX_RECORD_COUNT = 1008;
 
-    public BMFileScan(String filename) {
+    public BMFileScan(String filename,BitmapType bitmapType) {
 
         try {
-            bitMapFileScan = new Heapfile(filename).openScan();
+            this.filename = filename;
+            bitMapFileScan = new Heapfile(filename+bitmapType).openScan();
+            this.bitmapType = bitmapType;
         } catch (HFDiskMgrException | HFException | InvalidTupleSizeException |
                  HFBufMgrException | IOException e) {
             throw new RuntimeException("Error opening heapfile",e);
@@ -42,6 +45,10 @@ public class BMFileScan {
     }
 
     public Integer getNext() {
+
+//        if (filename.contains("Maryland")) {
+//            System.out.println("hi");
+//        }
 
         if ( (bmPage != null) && (bit = bmPage.getNextBit()) != null) {
             return bit;
@@ -58,10 +65,15 @@ public class BMFileScan {
             bmDataPageInfo = new BMDataPageInfo(tuple);
 
             if (bmPage != null) {
-                SystemDefs.JavabaseBM.unpinPage(bmPage.curPage, false);
+                SystemDefs.JavabaseBM.unpinPage(bmPage.getCurPage(), false);
             }
 
-            bmPage = new BMPage(bmDataPageInfo.pageId);
+            if(bitmapType == BitmapType.BITMAP) {
+                bmPage = new BMPage(bmDataPageInfo.pageId);
+            } else {
+                bmPage = new CBMPage(bmDataPageInfo.pageId);
+            }
+
 
             bit = bmPage.getNextBit();
             return bit;
@@ -78,7 +90,7 @@ public class BMFileScan {
 
     public void closeScan() {
         try {
-            SystemDefs.JavabaseBM.unpinPage(bmPage.curPage,false);
+            SystemDefs.JavabaseBM.unpinPage(bmPage.getCurPage(),false);
             bitMapFileScan.closescan();
         } catch (ReplacerException | PageUnpinnedException | HashEntryNotFoundException | InvalidFrameNumberException e) {
             throw new RuntimeException("Error unpinning page",e);
