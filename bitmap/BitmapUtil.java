@@ -92,7 +92,7 @@ public class BitmapUtil {
 
         for (BitMapFileMeta bitMapFileMeta : bitMapFileMetaList) {
             String value = bitMapFileMeta.value;
-            System.out.printf("%-12s | ", value); // Adjust the spacing as needed
+            System.out.printf("%-14s | ", value); // Adjust the spacing as needed
         }
 
         System.out.println();
@@ -110,7 +110,7 @@ public class BitmapUtil {
                     break;
                 }
 
-                System.out.printf("%-12s | ", bit); // Adjust the spacing as needed
+                System.out.printf("%-14s | ", bit); // Adjust the spacing as needed
             }
 
             position += 1;
