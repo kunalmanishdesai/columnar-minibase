@@ -27,7 +27,6 @@ public class BitmapFile implements GlobalConst {
     }
 
     private void accessColumn(ColumnFile columnFile, ValueClass value) throws Exception {
-        try {
             Scan columnScan = columnFile.getFile().openScan();
             Tuple tuple;
             RID rid = new RID();
@@ -36,7 +35,7 @@ public class BitmapFile implements GlobalConst {
 
             while ((tuple = columnScan.getNext(rid)) != null) {
 
-                if (bmPage.isSpaceAvailable()) {
+                if (bmPage.canInsert()) {
                     
                     if (isValueGreaterThanEqualToTuple(value, tuple)) {
                         bmPage.insertBit((byte)1);
@@ -54,14 +53,11 @@ public class BitmapFile implements GlobalConst {
 
             headerFile.insertRecord(
                     new BMDataPageInfo(bmPage.curPage,
-                            bmPage.isSpaceAvailable() ? 0 : 1 ,
+                            bmPage.canInsert() ? 0 : 1 ,
                             MAX_RECORD_COUNT).convertToTuple().getTupleByteArray());
 
             unpinPage(bmPage.curPage, true);
             columnScan.closescan();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
     }
 
     private boolean isValueGreaterThanEqualToTuple(ValueClass value, Tuple tuple) throws IOException, FieldNumberOutOfBoundException {
