@@ -9,7 +9,7 @@ import heap.HFPage;
 
 import java.io.IOException;
 
-public class BMPage extends HFPage {
+public class BMPage extends HFPage implements BMPageInterface {
 
   public int readPageCounter = IP_FIXED_DATA;
 
@@ -53,7 +53,8 @@ public class BMPage extends HFPage {
     }
   }
 
-  public boolean canInsert() throws IOException {
+
+  public boolean canInsert(byte bit){
     return (slotsUsed + IP_FIXED_DATA) < PAGE_SIZE ;
   }
 
@@ -118,5 +119,9 @@ public class BMPage extends HFPage {
     int bit = (int) data[readPageCounter];
     this.readPageCounter+= 1;
     return bit;
+  }
+
+  public PageId getCurPage() {
+    return this.curPage;
   }
 }
