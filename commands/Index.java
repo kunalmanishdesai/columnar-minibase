@@ -1,5 +1,6 @@
 package commands;
 
+import bitmap.BitmapType;
 import bitmap.BitmapUtil;
 import bufmgr.*;
 import columnar.ColumnarFile;
@@ -11,7 +12,7 @@ public class Index {
 
     public static void main(String [] command) {
 
-        command = "testdb test1 A BITMAP".split(" ");
+        command = "testdb test1 A PBITMAP".split(" ");
         if (command.length != 4) {
             System.out.println("Error: Incorrect number of input values.");
             return;
@@ -29,11 +30,15 @@ public class Index {
         ColumnarFile columnarFile = new ColumnarFile(columnarFileName);
         int colNo = columnarFile.getColumnNo(columnName);
         if(indexType.equals("BITMAP")) {
-            columnarFile.createBitmap(colNo);
+            columnarFile.createBitmap(colNo, BitmapType.BITMAP);
+        } else if (indexType.equals("CBITMAP")) {
+            columnarFile.createBitmap(colNo, BitmapType.CBITMAP);
         } else if(indexType.equals("BTREE")) {
             columnarFile.createBtreeIndex(colNo);
         } else  if (indexType.equals("PBITMAP")) {
-            BitmapUtil.printBitmap(columnarFile.getColumnFile(colNo).getName()+".BM.hdr",columnarFile);
+            BitmapUtil.printBitmap(columnarFile.getColumnFile(colNo).getName()+".BM.hdr",columnarFile,BitmapType.BITMAP);
+        } else  if (indexType.equals("PCBITMAP")) {
+            BitmapUtil.printBitmap(columnarFile.getColumnFile(colNo).getName()+".BM.hdr",columnarFile,BitmapType.CBITMAP);
         } else {
             System.out.println("Error: Incorrect index type.");
         }
