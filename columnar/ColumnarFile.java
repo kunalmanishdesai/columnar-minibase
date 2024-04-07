@@ -1,5 +1,6 @@
 package columnar;
 
+import bitmap.BitmapType;
 import btree.*;
 import bufmgr.HashEntryNotFoundException;
 import bufmgr.InvalidFrameNumberException;
@@ -235,7 +236,7 @@ public class ColumnarFile {
         return  -1;
     }
 
-    public boolean createBitmap(int colNo) {
-        return columnFiles[colNo].createBitmap();
+    public boolean createBitmap(int colNo, BitmapType bitmapType) {
+        return columnFiles[colNo].createBitmap(bitmapType);
     }
 }

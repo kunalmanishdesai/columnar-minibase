@@ -1,5 +1,6 @@
 package columnar;
 
+import bitmap.BitmapType;
 import bitmap.BitmapUtil;
 import btree.*;
 import global.AttrType;
@@ -183,9 +184,9 @@ public class ColumnFile {
         }
     }
 
-    public boolean createBitmap() {
+    public boolean createBitmap(BitmapType bitmapType) {
         try {
-            BitmapUtil.createBitmap(this);
+            BitmapUtil.createBitmap(this,bitmapType);
         } catch (Exception e) {
             throw new RuntimeException("Error creating bitmap file",e);
         }

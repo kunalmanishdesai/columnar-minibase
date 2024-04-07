@@ -18,7 +18,7 @@ import java.util.List;
 
 public class BitmapUtil {
 
-    public static void createBitmap(ColumnFile columnFile) throws Exception {
+    public static void createBitmap(ColumnFile columnFile, BitmapType bitmapType) throws Exception {
         String headerFileName = columnFile.getName()+".BM.hdr";
         Heapfile headerFile = new Heapfile(headerFileName);
 
@@ -36,7 +36,7 @@ public class BitmapUtil {
 
             if (!hashSet.contains(fileName)) {
                 hashSet.add(fileName);
-                new BitmapFile(columnFile, value, fileName);
+                new BitmapFile(columnFile, value, fileName,bitmapType);
                 headerFile.insertRecord(new BitMapFileMeta(fileName, value.toString()).convertToTuple().getTupleByteArray());
             }
         }
@@ -83,13 +83,14 @@ public class BitmapUtil {
         return BMFileList;
     }
 
-    public static void printBitmap(String headerFileName, ColumnarFile columnarFile) {
+    public static void printBitmap(String headerFileName, ColumnarFile columnarFile,BitmapType bitmapType) {
         List<BitMapFileMeta> bitMapFileMetaList = getBitmap(headerFileName);
 
         List<BMFileScan> scans = bitMapFileMetaList.stream()
-                .map(bitMapFileMeta -> new BMFileScan(bitMapFileMeta.getName()))
+                .map(bitMapFileMeta -> new BMFileScan(bitMapFileMeta.getName(),bitmapType))
                 .toList();
 
+        System.out.printf("%-14s | ", "position");
         for (BitMapFileMeta bitMapFileMeta : bitMapFileMetaList) {
             String value = bitMapFileMeta.value;
             System.out.printf("%-14s | ", value); // Adjust the spacing as needed
@@ -102,6 +103,8 @@ public class BitmapUtil {
 
         while (position < columnarFile.getRecordCount()) {
             Integer bit;
+            System.out.printf("%-14s | ", position);
+
             for (BMFileScan scan : scans) {
                 bit = scan.getNext();
 
