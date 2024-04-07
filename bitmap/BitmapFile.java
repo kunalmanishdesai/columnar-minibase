@@ -12,15 +12,18 @@ import java.io.IOException;
 public class BitmapFile implements GlobalConst {
 
     private static final int MAX_RECORD_COUNT = 1008;
+
+    private BitmapType bitmapType;
     public final Heapfile headerFile;
 	private final String filename;
 
 
 	// Constructor for creating a new file, when it doesn't exists
-	public BitmapFile(ColumnFile columnFile, ValueClass value,String fileName)
+	public BitmapFile(ColumnFile columnFile, ValueClass value,String fileName,BitmapType bitmapType)
             throws Exception {
-        this.filename = fileName;
+        this.filename = fileName + bitmapType;
         this.headerFile = new Heapfile(filename);
+        this.bitmapType = bitmapType;
         // this.filename = filename;
 
         accessColumn(columnFile, value);
@@ -31,32 +34,29 @@ public class BitmapFile implements GlobalConst {
             Tuple tuple;
             RID rid = new RID();
 
-            BMPage bmPage = new BMPage();
+            BMPageInterface bmPage = getNewBMPage();
 
             while ((tuple = columnScan.getNext(rid)) != null) {
 
-                if (bmPage.canInsert()) {
-                    
-                    if (isValueGreaterThanEqualToTuple(value, tuple)) {
-                        bmPage.insertBit((byte)1);
-                    } else {
-                        bmPage.insertBit((byte)0);
-                    }
-                } else {
-                    headerFile.insertRecord(new BMDataPageInfo(bmPage.curPage,1, MAX_RECORD_COUNT).convertToTuple().getTupleByteArray());
-                    unpinPage(bmPage.curPage, true);
-                    bmPage = new BMPage();
+                byte bit = 0;
+                if (isValueGreaterThanEqualToTuple(value, tuple)) {
+                   bit = 1;
                 }
-                
 
+                if (bmPage.canInsert(bit)) {
+                    bmPage.insertBit(bit);
+                } else {
+                    headerFile.insertRecord(new BMDataPageInfo(bmPage.getCurPage(),1, MAX_RECORD_COUNT).convertToTuple().getTupleByteArray());
+                    unpinPage(bmPage.getCurPage(), true);
+                    bmPage = getNewBMPage();
+                    bmPage.insertBit(bit);
+                }
             }
 
             headerFile.insertRecord(
-                    new BMDataPageInfo(bmPage.curPage,
-                            bmPage.canInsert() ? 0 : 1 ,
-                            MAX_RECORD_COUNT).convertToTuple().getTupleByteArray());
+                    new BMDataPageInfo(bmPage.getCurPage(), 1 , MAX_RECORD_COUNT).convertToTuple().getTupleByteArray());
 
-            unpinPage(bmPage.curPage, true);
+            unpinPage(bmPage.getCurPage(), true);
             columnScan.closescan();
     }
 
@@ -77,27 +77,11 @@ public class BitmapFile implements GlobalConst {
   
   /** Destroy entire Bitmap file.
    *@exception IOException  error from the lower layer
-   *@exception IteratorException iterator error
-   *@exception UnpinPageException error  when unpin a page
    *@exception FreePageException error when free a page
-   *@exception DeleteFileEntryException failed when delete a file from DM
-   *@exception ConstructPageException error in BT page constructor 
-   *@exception PinPageException failed when pin a page
- * @throws InvalidTupleSizeException 
- * @throws FieldNumberOutOfBoundException 
- * @throws HFDiskMgrException 
- * @throws HFBufMgrException 
- * @throws FileAlreadyDeletedException 
- * @throws InvalidSlotNumberException 
    */
   public void destroyBitmapFile() 
-    throws IOException, 
-	   IteratorException, 
-	   UnpinPageException,
-	   FreePageException,   
-	   DeleteFileEntryException, 
-	   ConstructPageException,
-	   PinPageException, InvalidTupleSizeException, FieldNumberOutOfBoundException, InvalidSlotNumberException, FileAlreadyDeletedException, HFBufMgrException, HFDiskMgrException {
+    throws IOException,
+	   FreePageException,InvalidTupleSizeException, FieldNumberOutOfBoundException, InvalidSlotNumberException, FileAlreadyDeletedException, HFBufMgrException, HFDiskMgrException {
 
         Tuple tuple;
         RID rid = new RID();
@@ -145,5 +129,21 @@ public class BitmapFile implements GlobalConst {
 	    throw new FreePageException(e,"");
       } 
       
+    }
+
+    private BMPageInterface getNewBMPage() {
+      switch (bitmapType) {
+          case BITMAP -> {
+              return new BMPage();
+          }
+
+          case CBITMAP -> {
+              return new CBMPage();
+          }
+
+          default -> {
+              throw new IllegalArgumentException("!!! Error !!!,type not found");
+          }
+      }
     }
 }
