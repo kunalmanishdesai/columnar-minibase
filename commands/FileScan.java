@@ -20,7 +20,7 @@ public class FileScan extends ScanCommand {
         System.out.println(Utils.getHeaderString(targetColumnNames));
 
         while ((tuple = tupleScan.get_next()) != null) {
-            System.out.println(Utils.getTupleString(tuple,attrTypes));
+            System.out.println(Utils.getTupleString(count,tuple,attrTypes));
             count++;
         }
 
