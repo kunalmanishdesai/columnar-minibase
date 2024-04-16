@@ -81,7 +81,7 @@ public class OutputTupleAttributes {
         if (conditionString.isEmpty()) {
             return null; // or handle it appropriately
         }
-        Pattern conditionPattern = Pattern.compile("(\\w+)\\s*([><=]+)\\s*(\\w+)");
+        Pattern conditionPattern = Pattern.compile("(\\w+)\\s*([!><=]+)\\s*(\\w+)");
         Matcher matcher = conditionPattern.matcher(conditionString.trim());
 
         if (matcher.find()) {
