@@ -11,6 +11,8 @@ import heap.InvalidTypeException;
 import heap.Tuple;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Utils {
 
@@ -96,22 +98,23 @@ public class Utils {
         }
     }
 
-    public static String getTupleString(Tuple tuple, AttrType[] attrTypes) {
+    public static String getTupleString(int count, Tuple tuple, AttrType[] attrTypes) {
 
-        String[] strings = new String[attrTypes.length];
+        String[] strings = new String[attrTypes.length+1];
+
+        strings[0] = String.format("%-20s", count);
 
         for(int i = 0; i < attrTypes.length;i++) {
-            strings[i] = String.format("%-20s", getValue(attrTypes[i],tuple,i+1));
+            strings[i+1] = String.format("%-20s", getValue(attrTypes[i],tuple,i+1));
         }
 
         return String.join("\t", strings);
     }
 
     public static String getHeaderString(String[] names) {
-        String[] formattedColumnNames = new String[names.length];
-        for(int i = 0; i < formattedColumnNames.length;i++) {
-            formattedColumnNames[i] = String.format("%-20s", names[i]);
-        }
+
+        ArrayList<String> formattedColumnNames = new ArrayList<>(Arrays.stream(names).map(str -> String.format("%-20s", str)).toList());
+        formattedColumnNames.add(0, String.format("%-20s", "Position"));
 
         return String.join("\t", formattedColumnNames);
     }
