@@ -32,6 +32,8 @@ public class ColumnFile {
 
     private boolean hasBitmap = false;
 
+    private boolean hasCBitmap = false;
+
     public RID rid = null;
 
 
@@ -134,8 +136,8 @@ public class ColumnFile {
         return hasBitmap;
     }
 
-    public void setHasBitmap(boolean hasBitmap) {
-        this.hasBitmap = hasBitmap;
+    public boolean hasCBitmap() {
+        return hasCBitmap;
     }
 
     public String getName() {
@@ -169,6 +171,7 @@ public class ColumnFile {
             tuple.setIntFld(3,attrType.attrType);
             tuple.setIntFld(4,hasBtree ? 1 : 0);
             tuple.setIntFld(5, hasBitmap? 1 : 0);
+            tuple.setIntFld(6, hasCBitmap? 1 : 0);
         } catch (IOException | FieldNumberOutOfBoundException e) {
             throw new RuntimeException("Error setting field",e);
         }
