@@ -1,7 +1,5 @@
 package global;
 
-import btree.KeyClass;
-
 public abstract class ValueClass<T> extends Object {
 
     protected T value;
