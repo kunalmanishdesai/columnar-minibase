@@ -37,7 +37,7 @@ public class BitmapUtil {
             if (!hashSet.contains(fileName)) {
                 hashSet.add(fileName);
                 new BitmapFile(columnFile, value, fileName,bitmapType);
-                headerFile.insertRecord(new BitMapFileMeta(fileName, value.toString()).convertToTuple().getTupleByteArray());
+                headerFile.insertRecord(new BitMapFileMeta(fileName, value.toString(),columnFile.getAttrType()).convertToTuple().getTupleByteArray());
             }
         }
     }
@@ -79,7 +79,7 @@ public class BitmapUtil {
         }
         scan.closescan();
 
-        BMFileList.sort(Comparator.comparing(BitMapFileMeta::getValue));
+        BMFileList.sort(Comparator.comparing(bitMapFileMeta -> bitMapFileMeta.getValue(), (value1, value2) -> value1.compareTo(value2.getValue())));
         return BMFileList;
     }
 
