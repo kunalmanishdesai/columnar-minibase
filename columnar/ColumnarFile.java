@@ -1,6 +1,7 @@
 package columnar;
 
 import bitmap.BitmapType;
+import bitmap.BitmapUtil;
 import btree.*;
 import bufmgr.HashEntryNotFoundException;
 import bufmgr.InvalidFrameNumberException;
@@ -275,7 +276,7 @@ public class ColumnarFile {
         return true;
     }
 
-    public boolean markTupleDeleted(RID rid) {
+    public void markTupleDeleted(RID rid) {
         try {
 
             TID tid = new TID(tidFile.getRecord(rid).getTupleByteArray());
@@ -290,15 +291,10 @@ public class ColumnarFile {
             byte[] tidBytes = tid.getBytes();
 
             tidFile.updateRecord(rid, new Tuple(tidBytes));
-
-            TID updatedTID = new TID(tidFile.getRecord(rid).getTupleByteArray());
-            System.out.println(updatedTID);
-
         } catch (Exception e) {
             throw new RuntimeException("Error marking tuple as deleted", e);
         }
 
-        return true;
     }
 
     public boolean purgeAllDeletedTuples() {
@@ -316,9 +312,6 @@ public class ColumnarFile {
                 for (int i=0;i < numColumns;i++) {
                     columnFiles[i].deleteRecord(tid.getRid(i));
                 }
-
-                byte[] tidData = new byte[4];
-                Convert.setIntValue(tid.getPosition(),0,tidData);
                 tidFile.deleteRecord(rid);
             }
 
@@ -327,6 +320,23 @@ public class ColumnarFile {
             deleteFile.deleteFile();
             deleteFile = new Heapfile(this.name+".idr");
 
+            int  i = 0;
+            for(ColumnFile columnFile : columnFiles) {
+
+                if (columnFile.hasBtree()) {
+                    columnFile.deleteBtree();
+                    columnFile.createBtree(tidFile);
+                }
+                if ( columnFile.hasBitmap()) {
+                    BitmapUtil.deleteBitmap(columnFile, BitmapType.BITMAP);
+                    BitmapUtil.createBitmap(columnFile,BitmapType.BITMAP,new RID());
+                }
+
+                if ( columnFile.hasCBitmap()) {
+                    BitmapUtil.deleteBitmap(columnFile, BitmapType.CBITMAP);
+                    BitmapUtil.createBitmap(columnFile,BitmapType.CBITMAP,new RID());
+                }
+            }
             return true;
 
         } catch (InvalidTupleSizeException | IOException e) {
