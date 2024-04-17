@@ -320,13 +320,13 @@ public class ColumnarFile {
             deleteFile.deleteFile();
             deleteFile = new Heapfile(this.name+".idr");
 
-            int  i = 0;
             for(ColumnFile columnFile : columnFiles) {
 
                 if (columnFile.hasBtree()) {
                     columnFile.deleteBtree();
                     columnFile.createBtree(tidFile);
                 }
+
                 if ( columnFile.hasBitmap()) {
                     BitmapUtil.deleteBitmap(columnFile, BitmapType.BITMAP);
                     BitmapUtil.createBitmap(columnFile,BitmapType.BITMAP,new RID());
