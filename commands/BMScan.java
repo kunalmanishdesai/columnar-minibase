@@ -31,7 +31,7 @@ public class BMScan extends ScanCommand {
 
 
     public static void main(String[] command) {
-        String test = "testdb test1 [A,B,C,D,E] {(C = 2) AND (A = Delaware) AND (B = Arizona)} 30";
+        String test = "testdb test1 [A,B,C,D,E] {(C = 2)} 30";
 //        String test = command[0];
         BMScan bmScan = new BMScan(test);
         bmScan.execute();
