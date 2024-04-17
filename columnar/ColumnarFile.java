@@ -237,6 +237,41 @@ public class ColumnarFile {
     }
 
     public boolean createBitmap(int colNo, BitmapType bitmapType) {
-        return columnFiles[colNo].createBitmap(bitmapType);
+
+        ColumnFile columnFile = columnFiles[colNo];
+
+        if (bitmapType == BitmapType.BITMAP) {
+            columnFile.setHasBitmap(true);
+        }
+
+        if (bitmapType == BitmapType.CBITMAP) {
+            columnFile.setHasCBitmap(true);
+        }
+
+        try {
+            headerFile.updateRecord(columnFile.rid, new Tuple(columnFile.getBytes()));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return columnFile.createBitmap(bitmapType, new RID());
+    }
+
+    public boolean updateBitmapIndex(TID startTID) {
+
+        int  i = 0;
+        for(ColumnFile columnFile : columnFiles) {
+            if ( columnFile.hasBitmap()) {
+                columnFile.createBitmap(BitmapType.BITMAP, startTID.getRid(i));
+            }
+
+            if ( columnFile.hasCBitmap()) {
+                columnFile.createBitmap(BitmapType.CBITMAP, startTID.getRid(i));
+            }
+
+            i++;
+        }
+
+        return true;
     }
 }
