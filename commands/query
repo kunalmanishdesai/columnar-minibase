@@ -28,19 +28,19 @@ case "$last_arg" in
             exit 1
         fi
         $JAVA ColumnScanCommand.java "$rest_args" ;;
-    "BTree")
-        $JAVAC BTreeScan.java
+    "BTREE")
+        $JAVAC BTScan.java
         if [ $? -ne 0 ]; then
             echo "Compilation failed. Exiting."
             exit 1
         fi
-        $JAVA BTreeScan.java "$rest_args" ;;
-    "Bitmap")
-        $JAVAC BitmapScan.java
+        $JAVA BTScan.java "$rest_args" ;;
+    "BITMAP")
+        $JAVAC BMScan.java
         if [ $? -ne 0 ]; then
             echo "Compilation failed. Exiting."
             exit 1
         fi
-        $JAVA BitmapScan.java "$rest_args" ;;
+        $JAVA BMScan.java "$rest_args" ;;
     *)  echo "Unknown input. Exiting." ;;
 esac
