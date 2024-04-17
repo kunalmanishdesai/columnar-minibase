@@ -11,36 +11,10 @@ import heap.Tuple;
 import iterator.FldSpec;
 import iterator.RelSpec;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class BitmapUtil {
-
-    public static void createBitmap(ColumnFile columnFile, BitmapType bitmapType) throws Exception {
-        String headerFileName = columnFile.getName()+".BM.hdr";
-        Heapfile headerFile = new Heapfile(headerFileName);
-
-        HashSet<String> hashSet = new HashSet<>();
-
-        Scan scan = columnFile.getFile().openScan();
-
-        RID rid = new RID();
-        Tuple tuple;
-
-        while ((tuple = scan.getNext(rid))!=null) {
-
-            ValueClass value = Utils.getValue(columnFile.getAttrType(),new Tuple(tuple.getTupleByteArray()),1);
-            String fileName = columnFile.getName() + ".BT." + value + ".hdr";
-
-            if (!hashSet.contains(fileName)) {
-                hashSet.add(fileName);
-                new BitmapFile(columnFile, value, fileName,bitmapType);
-                headerFile.insertRecord(new BitMapFileMeta(fileName, value.toString(),columnFile.getAttrType()).convertToTuple().getTupleByteArray());
-            }
-        }
-    }
 
     public static List<BitMapFileMeta> getBitmap(String headerFileName) {
         Tuple tuple;
@@ -129,6 +103,45 @@ public class BitmapUtil {
 
         for (BMFileScan scan : scans) {
             scan.closeScan();
+        }
+    }
+
+    public static void createBitmap(ColumnFile columnFile,BitmapType bitmapType, RID startRID) throws Exception {
+
+        String bitmapName = columnFile.getName()+".BM.hdr";
+
+        List<BitMapFileMeta> bitMapFileMetaList = getBitmap(bitmapName);
+        Set<String> valueAlreadyPresent = bitMapFileMetaList.stream().map(
+                bitMapFileMeta -> bitMapFileMeta.getValue().toString()
+        ).collect(Collectors.toSet());
+
+        String headerFileName = columnFile.getName()+".BM.hdr";
+        Heapfile headerFile = new Heapfile(headerFileName);
+
+        HashSet<String> hashSet = new HashSet<>();
+
+        Heapfile datafile = columnFile.getFile();
+        Scan scan = datafile.openScan();
+
+        Tuple tuple;
+
+        while ((tuple = scan.getNext(startRID))!=null) {
+
+            ValueClass value = Utils.getValue(columnFile.getAttrType(),new Tuple(tuple.getTupleByteArray()),1);
+            String fileName = columnFile.getName() + ".BT." + value + ".hdr";
+
+            if (!hashSet.contains(value.toString())) {
+                hashSet.add(value.toString());
+                BitmapFile bitmapFile = new BitmapFile(columnFile, value, fileName,bitmapType);
+
+                if (!valueAlreadyPresent.contains(value.toString())) {
+                    bitmapFile.accessColumn(columnFile,value,startRID);
+                    headerFile.insertRecord(new BitMapFileMeta(fileName, value.toString(),columnFile.getAttrType()).convertToTuple().getTupleByteArray());
+                    valueAlreadyPresent.add(value.toString());
+                } else {
+                    bitmapFile.accessColumn(columnFile,value,startRID);
+                }
+            }
         }
     }
 }
