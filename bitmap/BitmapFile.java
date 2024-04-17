@@ -26,17 +26,17 @@ public class BitmapFile implements GlobalConst {
         this.bitmapType = bitmapType;
         // this.filename = filename;
 
-        accessColumn(columnFile, value);
+//        accessColumn(columnFile, value, new RID());
     }
 
-    private void accessColumn(ColumnFile columnFile, ValueClass value) throws Exception {
+    public void accessColumn(ColumnFile columnFile, ValueClass value, RID startRID) throws Exception {
             Scan columnScan = columnFile.getFile().openScan();
+
             Tuple tuple;
-            RID rid = new RID();
 
             BMPageInterface bmPage = getNewBMPage();
 
-            while ((tuple = columnScan.getNext(rid)) != null) {
+            while ((tuple = columnScan.getNext(startRID)) != null) {
 
                 byte bit = 0;
                 if (isValueGreaterThanEqualToTuple(value, tuple)) {

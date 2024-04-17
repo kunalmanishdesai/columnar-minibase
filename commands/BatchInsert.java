@@ -4,6 +4,7 @@ import bufmgr.*;
 import columnar.ColumnarFile;
 import global.AttrType;
 import global.SystemDefs;
+import global.TID;
 import heap.*;
 
 import java.io.BufferedReader;
@@ -13,6 +14,7 @@ import java.util.Arrays;
 
 public class BatchInsert {
 
+    private TID startTID;
     private Short strCount;
     private final int numColumns;
 
@@ -72,16 +74,18 @@ public class BatchInsert {
 
         try {
             while ((line = br.readLine()) != null) {
-                insertTuple(position++,line);
+                insertTuple(position++,startPosition,line);
             }
         } catch (IOException e) {
             throw new RuntimeException("Error reading file",e);
         }
 
+        columnarFile.updateBitmapIndex(startTID);
+
         System.out.println("Total number of records (" +position + " - " +startPosition+") entered: " + (position-startPosition));
     }
 
-    private void insertTuple(int position,String line) {
+    private void insertTuple(int position,int startPosition,String line) {
 
         try {
             String[] values = line.split("\t");
@@ -109,7 +113,12 @@ public class BatchInsert {
                     tuple.setFloFld(i+1, Float.parseFloat(values[i]));
                 }
             }
-            columnarFile.insertTuple(position,tuple.getTupleByteArray());
+
+            if (position == startPosition) {
+                startTID = columnarFile.insertTuple(position,tuple.getTupleByteArray());
+            } else {
+                columnarFile.insertTuple(position,tuple.getTupleByteArray());
+            }
         } catch (FieldNumberOutOfBoundException | InvalidTupleSizeException | IOException | InvalidTypeException e) {
             throw new RuntimeException("error inserting tuple",e);
         }
