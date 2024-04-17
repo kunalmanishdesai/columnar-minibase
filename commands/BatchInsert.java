@@ -127,8 +127,8 @@ public class BatchInsert {
 
     public static void main (String[] args) {
 
-        String[] command = args;
-//        String[] command = "./src/test_data/5-50000b.txt testdb test1 5 false".split(" ");
+//        String[] command = args;
+        String[] command = "./src/test_data/5-100b.txt testdb test1 5 true".split(" ");
 
         if (command.length != 5) {
             System.out.println("Error: Incorrect number of input values.");
