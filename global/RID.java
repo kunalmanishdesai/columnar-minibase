@@ -66,5 +66,13 @@ public class RID{
     else
       return false;
   }
-  
+
+  public RID(byte[] bytes) {
+      try {
+          slotNo = Convert.getIntValue(0,bytes);
+          pageNo.pid = Convert.getIntValue(4,bytes);
+      } catch (IOException e) {
+          throw new RuntimeException(e);
+      }
+  }
 }
