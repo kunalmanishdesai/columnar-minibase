@@ -17,6 +17,7 @@ public class ColumnFile {
             new AttrType(AttrType.attrString),
             new AttrType(AttrType.attrInteger),
             new AttrType(AttrType.attrInteger),
+            new AttrType(AttrType.attrInteger),
             new AttrType(AttrType.attrInteger)
     };
 
@@ -57,6 +58,7 @@ public class ColumnFile {
             attrType = new AttrType(tuple.getIntFld(3));
             hasBtree = tuple.getIntFld(4) == 1;
             hasBitmap = tuple.getIntFld(5) == 1;
+            hasCBitmap = tuple.getIntFld(6) == 1;
             this.rid = rid;
 
             try {
@@ -132,6 +134,14 @@ public class ColumnFile {
         this.hasBtree = hasBtree;
     }
 
+    public void setHasBitmap(boolean hasBitmap) {
+        this.hasBitmap = hasBitmap;
+    }
+
+    public void setHasCBitmap(boolean hasCBitmap) {
+        this.hasCBitmap = hasCBitmap;
+    }
+
     public boolean hasBitmap() {
         return hasBitmap;
     }
@@ -160,7 +170,7 @@ public class ColumnFile {
         };
         Tuple tuple = new Tuple();
         try {
-            tuple.setHdr((short) 5,headerRecordAttrType,strSizes);
+            tuple.setHdr((short) 6,headerRecordAttrType,strSizes);
         } catch (IOException | InvalidTypeException | InvalidTupleSizeException e) {
             throw new RuntimeException("Error setting tuple header",e);
         }
@@ -187,9 +197,9 @@ public class ColumnFile {
         }
     }
 
-    public boolean createBitmap(BitmapType bitmapType) {
+    public boolean createBitmap(BitmapType bitmapType,RID startRID) {
         try {
-            BitmapUtil.createBitmap(this,bitmapType);
+            BitmapUtil.createBitmap(this,bitmapType,startRID);
         } catch (Exception e) {
             throw new RuntimeException("Error creating bitmap file",e);
         }
