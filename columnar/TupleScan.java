@@ -13,10 +13,6 @@ public class TupleScan {
     private final TID tid;
     private final RID rid = new RID();
 
-//    private final FldSpec[] prjSpec;
-//
-//    private final AttrType[] outPutAttr;
-//    private final CondExpr[] condExpr;
     private final ColumnarFile columnarFile;
 
     private final OutputTupleAttributes outputTupleAttributes;
@@ -85,6 +81,50 @@ public class TupleScan {
 
                 try {
                     if (!tid1.isDeleted() && PredEval.Eval(outputTupleAttributes.getCondExprs(), oTuple, null, columnarFile.getAttrTypes(), null)){
+                        Projection.Project(oTuple, columnarFile.getAttrTypes(),  Jtuple, outputTupleAttributes.getProdSpec(), n_out_flds);
+                        return  Jtuple;
+                    }
+                } catch (UnknowAttrType | FieldNumberOutOfBoundException | PredEvalException e) {
+                    throw new RuntimeException("Error checking condition",e);
+                } catch (InvalidTypeException | WrongPermat e) {
+                    throw new RuntimeException("Error projection tuple",e);
+                }
+
+            } catch (InvalidTupleSizeException | IOException e) {
+                throw new RuntimeException("Error fetching next tuple",e);
+            }
+        }
+
+    }
+
+    public Tuple markTupleDelete() {
+
+        while(true) {
+            try{
+                Tuple tuple= tidFileScan.getNext(rid);
+
+                if (tuple == null) {
+                    return null;
+                }
+
+                TID tid1 = new TID(tuple.getTupleByteArray());
+
+                Tuple oTuple = new Tuple();
+                try {
+                    oTuple.setHdr((short) columnarFile.getNumColumns(), columnarFile.getAttrTypes(), new short[] {30,30,30}) ;
+                } catch (IOException | InvalidTypeException | InvalidTupleSizeException e) {
+                    throw new RuntimeException("Error setting header for otuple",e);
+                }
+
+                for (int i =0; i< columnarFile.getNumColumns();i++) {
+
+                    Tuple columnTuple = new Tuple(columnScans[i].getNext(tid.getRid(i)).getTupleByteArray());
+                    Utils.insertIntoTuple(columnarFile.getAttrTypes()[i],columnTuple,i+1,oTuple);
+                }
+
+                try {
+                    if (!tid1.isDeleted() && PredEval.Eval(outputTupleAttributes.getCondExprs(), oTuple, null, columnarFile.getAttrTypes(), null)){
+                        columnarFile.markTupleDeleted(rid);
                         Projection.Project(oTuple, columnarFile.getAttrTypes(),  Jtuple, outputTupleAttributes.getProdSpec(), n_out_flds);
                         return  Jtuple;
                     }
