@@ -67,7 +67,7 @@ public class BTIndexScan {
 
                 int colNo = condExpr.operand1.symbol.offset-1;
                 scans.add(new BitmapIndexScan(
-                        columnarFile.getColumnFile(colNo).getName()+".BM.hdr",
+                        columnarFile.getColumnFile(colNo),
                         columnarFile,
                         condExpr,
                         BitmapType.CBITMAP));
