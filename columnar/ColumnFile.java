@@ -113,6 +113,31 @@ public class ColumnFile {
         return true;
     }
 
+    public void deleteBtree() {
+        try {
+            BTreeFile bTreeFile = new BTreeFile(name+".BT", attrType.attrType, 30, DeleteFashion.FULL_DELETE);
+            bTreeFile.destroyFile();
+        } catch (GetFileEntryException e) {
+            throw new RuntimeException(e);
+        } catch (ConstructPageException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (AddFileEntryException e) {
+            throw new RuntimeException(e);
+        } catch (IteratorException e) {
+            throw new RuntimeException(e);
+        } catch (PinPageException e) {
+            throw new RuntimeException(e);
+        } catch (UnpinPageException e) {
+            throw new RuntimeException(e);
+        } catch (FreePageException e) {
+            throw new RuntimeException(e);
+        } catch (DeleteFileEntryException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public RID insert(Tuple tuple) {
         try {
             return dataFile.insertRecord(tuple.getTupleByteArray());
