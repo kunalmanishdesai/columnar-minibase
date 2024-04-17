@@ -49,7 +49,7 @@ public class ColumnScan {
 
 
         scans = new ArrayList<>();
-        condAttr = outputTupleAttributes.getOutputAttrs();
+        condAttr = outputTupleAttributes.getConditionAttrs();
         condExprs = outputTupleAttributes.getCondExprs();
 
         for(int i = 0; i < condExprs.length;i++) {
@@ -95,13 +95,15 @@ public class ColumnScan {
                     while (condExpr != null) {
                         Tuple tuple = new Tuple(scans.get(counter).getNext(rids.get(counter)).getTupleByteArray());
 
+                        AttrType[] tempAttr = new AttrType[] {condAttr[counter]};
+
                         CondExpr[] tempCond = new CondExpr[2];
                         tempCond[0] = new CondExpr(condExpr);
                         tempCond[0].next = null;
                         tempCond[0].operand1.symbol.offset = 1;
                         tempCond[1] = null;
                         
-                        AttrType[] tempAttr = new AttrType[] {condAttr[counter]};
+
 
                         isValidTupleOR = (isValidTupleOR || PredEval.Eval(tempCond,tuple,null, tempAttr, null));
                         condExpr = condExpr.next;
