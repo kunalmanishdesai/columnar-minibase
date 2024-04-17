@@ -21,7 +21,7 @@ public class ColumnarFile {
 
     private final Heapfile tidFile;
 
-    private final Heapfile deleteFile;
+    private Heapfile deleteFile;
 
     private final Heapfile headerFile;
 
@@ -273,5 +273,69 @@ public class ColumnarFile {
         }
 
         return true;
+    }
+
+    public boolean markTupleDeleted(RID rid) {
+        try {
+
+            TID tid = new TID(tidFile.getRecord(rid).getTupleByteArray());
+
+            tid.markDeleted();
+
+            byte[] ridBytes = new byte[8];
+            rid.writeToByteArray(ridBytes,0);
+
+            deleteFile.insertRecord(ridBytes);
+
+            byte[] tidBytes = tid.getBytes();
+
+            tidFile.updateRecord(rid, new Tuple(tidBytes));
+
+            TID updatedTID = new TID(tidFile.getRecord(rid).getTupleByteArray());
+            System.out.println(updatedTID);
+
+        } catch (Exception e) {
+            throw new RuntimeException("Error marking tuple as deleted", e);
+        }
+
+        return true;
+    }
+
+    public boolean purgeAllDeletedTuples() {
+
+        try {
+            Scan deleteFileScan = deleteFile.openScan();
+            RID scanRID = new RID();
+
+            Tuple tuple;
+            while ((tuple = deleteFileScan.getNext(scanRID)) !=  null) {
+
+                RID rid = new RID(tuple.getTupleByteArray());
+                TID tid = new TID(tidFile.getRecord(rid).getTupleByteArray());
+
+                for (int i=0;i < numColumns;i++) {
+                    columnFiles[i].deleteRecord(tid.getRid(i));
+                }
+
+                byte[] tidData = new byte[4];
+                Convert.setIntValue(tid.getPosition(),0,tidData);
+                tidFile.deleteRecord(rid);
+            }
+
+            deleteFileScan.closescan();
+
+            deleteFile.deleteFile();
+            deleteFile = new Heapfile(this.name+".idr");
+
+            return true;
+
+        } catch (InvalidTupleSizeException | IOException e) {
+            throw new RuntimeException("Error scanning heap file", e);
+        } catch (HFDiskMgrException | HFException | InvalidSlotNumberException | HFBufMgrException e) {
+            throw new RuntimeException("Error deleting records", e);
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting records ",e);
+        }
+
     }
 }
