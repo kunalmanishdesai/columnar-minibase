@@ -36,9 +36,9 @@ public class Index {
         } else if(indexType.equals("BTREE")) {
             columnarFile.createBtreeIndex(colNo);
         } else  if (indexType.equals("PBITMAP")) {
-            BitmapUtil.printBitmap(columnarFile.getColumnFile(colNo).getName()+".BM.hdr",columnarFile,BitmapType.BITMAP);
+            BitmapUtil.printBitmap(columnarFile.getColumnFile(colNo),columnarFile,BitmapType.BITMAP);
         } else  if (indexType.equals("PCBITMAP")) {
-            BitmapUtil.printBitmap(columnarFile.getColumnFile(colNo).getName()+".BM.hdr",columnarFile,BitmapType.CBITMAP);
+            BitmapUtil.printBitmap(columnarFile.getColumnFile(colNo),columnarFile,BitmapType.CBITMAP);
         } else {
             System.out.println("Error: Incorrect index type.");
         }
