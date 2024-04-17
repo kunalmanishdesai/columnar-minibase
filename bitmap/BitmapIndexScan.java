@@ -1,5 +1,6 @@
 package bitmap;
 
+import columnar.ColumnFile;
 import columnar.ColumnarFile;
 import columnar.ValueInt;
 import columnar.ValueString;
@@ -28,8 +29,8 @@ public class BitmapIndexScan {
     private Integer bit0 = 0;
 
 
-    public BitmapIndexScan(String bitmapName,ColumnarFile columnarFile,CondExpr condExpr,BitmapType bitmapType) {
-        this.bitmapName = bitmapName;
+    public BitmapIndexScan(ColumnFile columnFile, ColumnarFile columnarFile, CondExpr condExpr, BitmapType bitmapType) {
+        this.bitmapName = BitmapUtil.getBitmapHeader(columnFile,bitmapType);
         this.columnarFile = columnarFile;
 
         AttrType attrType = columnarFile.getColumnFile(condExpr.operand1.symbol.offset-1).getAttrType();
