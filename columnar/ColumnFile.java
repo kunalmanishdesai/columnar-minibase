@@ -205,4 +205,15 @@ public class ColumnFile {
         }
         return true;
     }
+
+    public boolean deleteRecord(RID rid) {
+        try {
+            dataFile.deleteRecord(rid);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        return true;
+    }
 }
