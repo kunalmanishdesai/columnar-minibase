@@ -19,7 +19,7 @@ public class BitmapFile implements GlobalConst {
 
 
 	// Constructor for creating a new file, when it doesn't exists
-	public BitmapFile(ColumnFile columnFile, ValueClass value,String fileName,BitmapType bitmapType)
+	public BitmapFile(String fileName,BitmapType bitmapType)
             throws Exception {
         this.filename = fileName + bitmapType;
         this.headerFile = new Heapfile(filename);
