@@ -5,12 +5,11 @@ import columnar.ColumnarFile;
 import columnar.Utils;
 import global.RID;
 import global.ValueClass;
-import heap.Heapfile;
-import heap.Scan;
-import heap.Tuple;
+import heap.*;
 import iterator.FldSpec;
 import iterator.RelSpec;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -27,18 +26,10 @@ public class BitmapUtil {
 
         Scan scan = null;
         try {
-//            scan = new FileScan(headerFileName, BitMapFileMeta.getAttrTypes(),new short[] {30,30}, (short) 2,2,projlist,null);
             scan = new Heapfile(headerFileName).openScan();
         } catch (Exception e) {
             throw new RuntimeException("Error Scanning",e);
         }
-
-//        Sort sort = null;
-//        try {
-//            sort = new Sort(BitMapFileMeta.getAttrTypes(), (short) 2, new short[] {30,30}, scan, 2, new TupleOrder(TupleOrder.Ascending), 30, 10);
-//        } catch (IOException | SortException e) {
-//            throw new RuntimeException("Error sorting",e);
-//        }
 
         List<BitMapFileMeta> BMFileList = new ArrayList<>();
 
@@ -57,8 +48,14 @@ public class BitmapUtil {
         return BMFileList;
     }
 
-    public static void printBitmap(String headerFileName, ColumnarFile columnarFile,BitmapType bitmapType) {
-        List<BitMapFileMeta> bitMapFileMetaList = getBitmap(headerFileName);
+    public static String getBitmapHeader(ColumnFile columnFile, BitmapType bitmapType) {
+        return columnFile.getName() + "." + bitmapType.name() + ".BM.hdr";
+    }
+
+    public static void printBitmap(ColumnFile columnFile,ColumnarFile columnarFile,BitmapType bitmapType) {
+
+        String bitmapHeader = getBitmapHeader(columnFile,bitmapType);
+        List<BitMapFileMeta> bitMapFileMetaList = getBitmap(bitmapHeader);
 
         List<BMFileScan> scans = bitMapFileMetaList.stream()
                 .map(bitMapFileMeta -> new BMFileScan(bitMapFileMeta.getName(),bitmapType))
@@ -108,15 +105,14 @@ public class BitmapUtil {
 
     public static void createBitmap(ColumnFile columnFile,BitmapType bitmapType, RID startRID) throws Exception {
 
-        String bitmapName = columnFile.getName()+".BM.hdr";
+        String bitmapName = getBitmapHeader(columnFile,bitmapType);
 
         List<BitMapFileMeta> bitMapFileMetaList = getBitmap(bitmapName);
         Set<String> valueAlreadyPresent = bitMapFileMetaList.stream().map(
                 bitMapFileMeta -> bitMapFileMeta.getValue().toString()
         ).collect(Collectors.toSet());
 
-        String headerFileName = columnFile.getName()+".BM.hdr";
-        Heapfile headerFile = new Heapfile(headerFileName);
+        Heapfile headerFile = new Heapfile(bitmapName);
 
         HashSet<String> hashSet = new HashSet<>();
 
@@ -132,7 +128,7 @@ public class BitmapUtil {
 
             if (!hashSet.contains(value.toString())) {
                 hashSet.add(value.toString());
-                BitmapFile bitmapFile = new BitmapFile(columnFile, value, fileName,bitmapType);
+                BitmapFile bitmapFile = new BitmapFile(fileName,bitmapType);
 
                 if (!valueAlreadyPresent.contains(value.toString())) {
                     bitmapFile.accessColumn(columnFile,value,startRID);
@@ -142,6 +138,30 @@ public class BitmapUtil {
                     bitmapFile.accessColumn(columnFile,value,startRID);
                 }
             }
+        }
+    }
+
+    public static void deleteBitmap(ColumnFile columnFile,BitmapType bitmapType) {
+
+        String headerFileName = getBitmapHeader(columnFile,bitmapType);
+        List<BitMapFileMeta> bitMapFileMetaList = getBitmap(headerFileName);
+
+        for(BitMapFileMeta bitMapFileMeta : bitMapFileMetaList) {
+            try {
+                BitmapFile bitmapFile = new BitmapFile(bitMapFileMeta.bitMapFileName,bitmapType);
+                bitmapFile.destroyBitmapFile();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+        try {
+            Heapfile headerFile = new Heapfile(headerFileName);
+            headerFile.deleteFile();
+        } catch (HFException | HFBufMgrException | HFDiskMgrException | IOException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidSlotNumberException | InvalidTupleSizeException | FileAlreadyDeletedException e) {
+            throw new RuntimeException(e);
         }
     }
 }
