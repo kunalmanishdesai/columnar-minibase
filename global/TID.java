@@ -1,7 +1,5 @@
 package global;
 
-import heap.Tuple;
-
 import java.io.IOException;
 import java.util.Arrays;
 
@@ -57,6 +55,10 @@ public class TID {
     }
     public RID getRid(int colNo) {
         return rids[colNo];
+    }
+
+    public void markDeleted() {
+        isDeleted = true;
     }
 
     public boolean isDeleted() {
