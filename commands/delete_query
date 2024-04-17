@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Set JDK, LIB, and BIN paths
+JDKPATH="/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home"
+LIBPATH="..:."
+CLASSPATH="$LIBPATH"
+BINPATH="$JDKPATH/bin"
+JAVAC="$BINPATH/javac -classpath $CLASSPATH"
+JAVA="$BINPATH/java -classpath $CLASSPATH"
+
+#to be removed
+#cd ../../
+#make db >/dev/null 2>&1
+#
+#cd ./tests/commands
+# Compile Index.java
+$JAVAC DeleteQuery.java
+
+# Check if compilation was successful
+if [ $? -ne 0 ]; then
+    echo "Compilation failed. Exiting."
+    exit 1
+fi
+
+# Execute BatchInsert with command-line arguments
+$JAVA DeleteQuery.java "$@"
