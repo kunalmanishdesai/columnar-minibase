@@ -106,7 +106,7 @@ public class BTreeColumnarScan {
 
                 tid = new TID(tidFile.getRecord(rid).getTupleByteArray());
                 Tuple oTuple = columnarFile.getTuple(tid);
-                if (PredEval.Eval(outputTupleAttributes.getCondExprs(), oTuple, null, columnarFile.getAttrTypes(), null)) {
+                if (!tid.isDeleted() && PredEval.Eval(outputTupleAttributes.getCondExprs(), oTuple, null, columnarFile.getAttrTypes(), null)) {
                     // need projection.java
                     Projection.Project(oTuple, columnarFile.getAttrTypes(), Jtuple, outputTupleAttributes.getProdSpec(), outputTupleAttributes.getProdSpec().length);
                     return Jtuple;
