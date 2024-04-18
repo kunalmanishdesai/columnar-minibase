@@ -3,6 +3,10 @@ package columnar;
 import bitmap.BitmapType;
 import bitmap.BitmapUtil;
 import btree.*;
+import bufmgr.HashEntryNotFoundException;
+import bufmgr.InvalidFrameNumberException;
+import bufmgr.PageUnpinnedException;
+import bufmgr.ReplacerException;
 import global.AttrType;
 import global.RID;
 import global.TID;
@@ -117,6 +121,7 @@ public class ColumnFile {
         try {
             BTreeFile bTreeFile = new BTreeFile(name+".BT", attrType.attrType, 30, DeleteFashion.FULL_DELETE);
             bTreeFile.destroyFile();
+            bTreeFile.close();
         } catch (GetFileEntryException e) {
             throw new RuntimeException(e);
         } catch (ConstructPageException e) {
@@ -134,6 +139,14 @@ public class ColumnFile {
         } catch (FreePageException e) {
             throw new RuntimeException(e);
         } catch (DeleteFileEntryException e) {
+            throw new RuntimeException(e);
+        } catch (HashEntryNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InvalidFrameNumberException e) {
+            throw new RuntimeException(e);
+        } catch (PageUnpinnedException e) {
+            throw new RuntimeException(e);
+        } catch (ReplacerException e) {
             throw new RuntimeException(e);
         }
     }
