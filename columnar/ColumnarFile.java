@@ -311,15 +311,6 @@ public class ColumnarFile {
                 TID tid = new TID(tidFile.getRecord(rid).getTupleByteArray());
 
                 for (int i=0;i < numColumns;i++) {
-
-                    Tuple tuple1 = columnFiles[i].dataFile.getRecord(tid.getRid(i));
-
-                    if (columnFiles[i].hasBtree()) {
-                        BTreeFile bTreeFile = new BTreeFile(name+".BT");
-                        bTreeFile.Delete(Utils.createKey(columnFiles[i].getAttrType(), tuple1), scanRID);
-                        bTreeFile.close();
-                    }
-
                     columnFiles[i].deleteRecord(tid.getRid(i));
                 }
 
@@ -332,18 +323,26 @@ public class ColumnarFile {
             deleteFile.deleteFile();
             deleteFile = new Heapfile(this.name+".idr");
 
-            for(ColumnFile columnFile : columnFiles) {
+            if (count != 0) {
+                for(ColumnFile columnFile : columnFiles) {
 
-                if ( columnFile.hasBitmap()) {
-                    BitmapUtil.deleteBitmap(columnFile, BitmapType.BITMAP);
-                    BitmapUtil.createBitmap(columnFile,BitmapType.BITMAP,new RID());
-                }
+                    if (columnFile.hasBtree()) {
+                        columnFile.deleteBtree();
+                        columnFile.createBtree(tidFile);
+                    }
 
-                if ( columnFile.hasCBitmap()) {
-                    BitmapUtil.deleteBitmap(columnFile, BitmapType.CBITMAP);
-                    BitmapUtil.createBitmap(columnFile,BitmapType.CBITMAP,new RID());
+                    if ( columnFile.hasBitmap()) {
+                        BitmapUtil.deleteBitmap(columnFile, BitmapType.BITMAP);
+                        BitmapUtil.createBitmap(columnFile,BitmapType.BITMAP,new RID());
+                    }
+
+                    if ( columnFile.hasCBitmap()) {
+                        BitmapUtil.deleteBitmap(columnFile, BitmapType.CBITMAP);
+                        BitmapUtil.createBitmap(columnFile,BitmapType.CBITMAP,new RID());
+                    }
                 }
             }
+
             return count;
 
         } catch (InvalidTupleSizeException | IOException e) {
