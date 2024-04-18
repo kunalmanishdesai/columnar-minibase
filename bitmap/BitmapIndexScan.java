@@ -169,7 +169,7 @@ public class BitmapIndexScan {
 
             case AttrOperator.aopNE -> {
 
-                if(Objects.equals(bitMapFileMetaList.get(gteIndex).getValue().getValue(), valueClass.getValue())) {
+                if( gteIndex < lastIndex && Objects.equals(bitMapFileMetaList.get(gteIndex).getValue().getValue(), valueClass.getValue())) {
                     return new int[] {-1, gteIndex};
                 }
 
