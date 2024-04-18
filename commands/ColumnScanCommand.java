@@ -31,8 +31,8 @@ public class ColumnScanCommand extends ScanCommand {
     //COLUMNDBNAME COLUMNARFILENAME [TARGETCOLUMNNAMES] VALUECONSTRAINT NUMBUF ACCESSTYPE
     public static void main(String[] command) {
 
-        String test = "testdb test1 [A,B,C,D,E] {(C = 2)} 12";
-//        String test = command[0];
+//        String test = "testdb test1 [A,B,C,D,E] {(C = 2)} 12";
+        String test = command[0];
         ColumnScanCommand columnScan = new ColumnScanCommand(test);
         columnScan.execute();
     }

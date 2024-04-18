@@ -29,8 +29,8 @@ public class BTScan extends ScanCommand {
     }
 
     public static void main(String[] command) {
-        String test = "testdb test1 [A,B,C,D] {(C = 2)} 12";
-//        String test = command[0];
+//        String test = "testdb test1 [A,B,C,D] {(C = 2)} 12";
+        String test = command[0];
         BTScan btScan = new BTScan(test);
         btScan.execute();
     }

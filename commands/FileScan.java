@@ -30,8 +30,8 @@ public class FileScan extends ScanCommand {
 
     public static void main(String[] command) {
 
-        String test = "testdb test1 [A,B,C,D,E] {(C = 2)} 12";
-//        String test = command[0];
+//        String test = "testdb test1 [A,B,C,D,E] {(C = 2)} 12";
+        String test = command[0];
         FileScan fileScan = new FileScan(test);
         fileScan.execute();
     }

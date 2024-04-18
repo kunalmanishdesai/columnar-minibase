@@ -50,10 +50,9 @@ public class DeleteQuery {
     //COLUMNDBNAME COLUMNARFILENAME [TARGETCOLUMNNAMES] VALUECONSTRAINT NUMBUF ACCESSTYPE
     public static void main(String[] command) {
 
-        String test = "testdb test1 {(C = 4)} 20 true";
+//        String test = "testdb test1 {(C = 4)} 20 true";
 
-//        System.out.println(command[0]);
-//        String test = command[0];
+        String test = command[0];
         DeleteQuery deleteQuery = new DeleteQuery(test);
         deleteQuery.execute();
 
