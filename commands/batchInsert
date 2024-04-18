@@ -8,10 +8,6 @@ BINPATH="$JDKPATH/bin"
 JAVAC="$BINPATH/javac -classpath $CLASSPATH"
 JAVA="$BINPATH/java -classpath $CLASSPATH"
 
-cd ../heap
-make all
-cd ../commands
-
 # Compile BatchInsert.java
 $JAVAC BatchInsert.java
 
