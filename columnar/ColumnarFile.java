@@ -297,8 +297,9 @@ public class ColumnarFile {
 
     }
 
-    public boolean purgeAllDeletedTuples() {
+    public int purgeAllDeletedTuples() {
 
+        int count = 0;
         try {
             Scan deleteFileScan = deleteFile.openScan();
             RID scanRID = new RID();
@@ -310,8 +311,19 @@ public class ColumnarFile {
                 TID tid = new TID(tidFile.getRecord(rid).getTupleByteArray());
 
                 for (int i=0;i < numColumns;i++) {
+
+                    Tuple tuple1 = columnFiles[i].dataFile.getRecord(tid.getRid(i));
+
+                    if (columnFiles[i].hasBtree()) {
+                        BTreeFile bTreeFile = new BTreeFile(name+".BT");
+                        bTreeFile.Delete(Utils.createKey(columnFiles[i].getAttrType(), tuple1), scanRID);
+                        bTreeFile.close();
+                    }
+
                     columnFiles[i].deleteRecord(tid.getRid(i));
                 }
+
+                count+=1;
                 tidFile.deleteRecord(rid);
             }
 
@@ -321,11 +333,6 @@ public class ColumnarFile {
             deleteFile = new Heapfile(this.name+".idr");
 
             for(ColumnFile columnFile : columnFiles) {
-
-                if (columnFile.hasBtree()) {
-                    columnFile.deleteBtree();
-                    columnFile.createBtree(tidFile);
-                }
 
                 if ( columnFile.hasBitmap()) {
                     BitmapUtil.deleteBitmap(columnFile, BitmapType.BITMAP);
@@ -337,7 +344,7 @@ public class ColumnarFile {
                     BitmapUtil.createBitmap(columnFile,BitmapType.CBITMAP,new RID());
                 }
             }
-            return true;
+            return count;
 
         } catch (InvalidTupleSizeException | IOException e) {
             throw new RuntimeException("Error scanning heap file", e);
