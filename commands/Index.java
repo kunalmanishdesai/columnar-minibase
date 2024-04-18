@@ -12,7 +12,7 @@ public class Index {
 
     public static void main(String [] command) {
 
-        command = "testdb test1 C CBITMAP".split(" ");
+//        command = "testdb test1 C BTREE".split(" ");
         if (command.length != 4) {
             System.out.println("Error: Incorrect number of input values.");
             return;
