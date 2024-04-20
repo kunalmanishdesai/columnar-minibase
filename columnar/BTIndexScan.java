@@ -152,7 +152,7 @@ public class BTIndexScan {
             return new BitmapIndexScan(columnFile, columnarFile, condExpr, BitmapType.CBITMAP);
         }
 
-        if (columnFile.hasBitmap() && bitmapType == BitmapType.BITMAP) {
+        if (columnFile.hasBitmap()) {
             return new BitmapIndexScan(columnFile, columnarFile, condExpr, BitmapType.BITMAP);
         }
 
