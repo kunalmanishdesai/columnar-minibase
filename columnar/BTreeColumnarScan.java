@@ -11,7 +11,7 @@ import iterator.*;
 
 import java.io.IOException;
 
-public class BTreeColumnarScan {
+public class BTreeColumnarScan implements TupleScanInterface {
 
     private final OutputTupleAttributes outputTupleAttributes;
     private final ColumnarFile columnarFile;
@@ -28,6 +28,59 @@ public class BTreeColumnarScan {
     private final AttrType type;
 
     private final boolean index_only;
+
+    public BTreeColumnarScan(ColumnarFile columnarFile, OutputTupleAttributes outputTupleAttributes, CondExpr[] condExprs) {
+
+        this.outputTupleAttributes = outputTupleAttributes;
+        this.columnarFile = columnarFile;
+        n_out_flds = outputTupleAttributes.getProdSpec().length;
+        Jtuple =  new Tuple();
+        try {
+            TupleUtils.setup_op_tuple(Jtuple, new AttrType[n_out_flds], columnarFile.getAttrTypes(), columnarFile.getNumColumns(), new short[] {30,30,30,30,30,30}, outputTupleAttributes.getProdSpec(), n_out_flds);
+        } catch (IOException | TupleUtilsException | InvalidRelation e) {
+            throw new RuntimeException("Error setting output tuple",e);
+        }
+
+//        CondExpr[] condExprs =
+//
+//        CondExpr condExpr= new CondExpr(outputTupleAttributes.getCondExprs()[0]);
+//        condExpr.next = null;
+
+        tidFile = columnarFile.getTidFile();
+        int colNo = outputTupleAttributes.getCondExprs()[0].operand1.symbol.offset-1;
+
+
+        ColumnFile columnFile = columnarFile.getColumnFile(colNo);
+
+        if (!columnFile.hasBtree()) {
+            columnFile =  columnarFile.getColumnFile(outputTupleAttributes.getCondExprs()[1].operand1.symbol.offset-1);
+        }
+
+        type = columnFile.getAttrType();
+
+        CondExpr[] btreeCondExpr = new CondExpr[2];
+
+        btreeCondExpr[0] = new CondExpr(condExprs[0]);
+        btreeCondExpr[0].next = null;
+        btreeCondExpr[1] = null;
+
+        if (outputTupleAttributes.getCondExprs().length == 2 &&
+                outputTupleAttributes.getProdSpec().length == 1 &&
+                outputTupleAttributes.getProdSpec()[0].offset ==
+                        outputTupleAttributes.getCondExprs()[0].operand1.symbol.offset) {
+            index_only = true;
+        } else {
+            index_only = false;
+        }
+
+        try {
+            btFileScan = (BTFileScan) IndexUtils.BTree_scan(btreeCondExpr, new BTreeFile(columnFile.getName()+".BT"));
+        } catch (IOException | UnknownKeyTypeException | InvalidSelectionException | KeyNotMatchException |
+                 UnpinPageException | PinPageException | IteratorException | ConstructPageException |
+                 GetFileEntryException e) {
+            throw new RuntimeException("Error getting btree file",e);
+        }
+    }
     public BTreeColumnarScan(ColumnarFile columnarFile, OutputTupleAttributes outputTupleAttributes) {
 
         this.outputTupleAttributes = outputTupleAttributes;
@@ -50,6 +103,11 @@ public class BTreeColumnarScan {
 
 
         ColumnFile columnFile = columnarFile.getColumnFile(colNo);
+
+        if (!columnFile.hasBtree()) {
+            columnFile =  columnarFile.getColumnFile(outputTupleAttributes.getCondExprs()[1].operand1.symbol.offset-1);
+        }
+
         type = columnFile.getAttrType();
 
         CondExpr[] btreeCondExpr = new CondExpr[2];

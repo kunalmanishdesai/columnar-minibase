@@ -15,7 +15,7 @@ import iterator.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class BTIndexScan {
+public class BTIndexScan implements TupleScanInterface {
 
     private final OutputTupleAttributes outputTupleAttributes;
     private final ColumnarFile columnarFile;
@@ -32,8 +32,6 @@ public class BTIndexScan {
     private final Tuple Jtuple;
 
     private TID tid;
-
-    private final AttrType[] condAttr;
 
     public BTIndexScan(ColumnarFile columnarFile, OutputTupleAttributes outputTupleAttributes, BitmapType bitmapType) {
 
@@ -55,9 +53,47 @@ public class BTIndexScan {
 
 
         scans = new ArrayList<>();
-        condAttr = outputTupleAttributes.getOutputAttrs();
         condExprs = outputTupleAttributes.getCondExprs();
 
+        for(int i = 0; i < condExprs.length;i++) {
+
+            CondExpr condExpr = condExprs[i];
+
+            while (condExpr != null) {
+
+                rids.add(new RID());
+
+                int colNo = condExpr.operand1.symbol.offset-1;
+                scans.add(getScan(colNo, condExpr, bitmapType));
+                condExpr = condExpr.next;
+            }
+
+        }
+
+    }
+
+    public BTIndexScan(ColumnarFile columnarFile, OutputTupleAttributes outputTupleAttributes,CondExpr[] condExprs, BitmapType bitmapType) {
+
+        this.outputTupleAttributes = outputTupleAttributes;
+        this.columnarFile = columnarFile;
+        n_out_flds = outputTupleAttributes.getProdSpec().length;
+        Jtuple =  new Tuple();
+        try {
+            TupleUtils.setup_op_tuple(Jtuple, new AttrType[n_out_flds], columnarFile.getAttrTypes(), columnarFile.getNumColumns(), new short[] {30,30,30,30,30,30}, outputTupleAttributes.getProdSpec(), n_out_flds);
+        } catch (IOException | TupleUtilsException | InvalidRelation e) {
+            throw new RuntimeException("Error setting output tuple",e);
+        }
+
+        try {
+            tidFileScan = columnarFile.getTidFile().openScan();
+        } catch (IOException | InvalidTupleSizeException e) {
+            throw new RuntimeException("Error creating scans",e);
+        }
+
+
+        scans = new ArrayList<>();
+
+        this.condExprs = condExprs;
         for(int i = 0; i < condExprs.length;i++) {
 
             CondExpr condExpr = condExprs[i];
