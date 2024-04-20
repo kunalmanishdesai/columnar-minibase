@@ -1,6 +1,7 @@
 package columnar;
 
 import bitmap.BitmapIndexScan;
+import index.BooleanScan;
 import bitmap.BitmapType;
 import global.AttrType;
 import global.RID;
@@ -18,7 +19,7 @@ public class BTIndexScan {
 
     private final OutputTupleAttributes outputTupleAttributes;
     private final ColumnarFile columnarFile;
-    private final  ArrayList<BitmapIndexScan> scans;
+    private final  ArrayList<BooleanScan> scans;
 
     private final Scan tidFileScan;
     private final CondExpr[] condExprs;
@@ -34,7 +35,7 @@ public class BTIndexScan {
 
     private final AttrType[] condAttr;
 
-    public BTIndexScan(ColumnarFile columnarFile, OutputTupleAttributes outputTupleAttributes) {
+    public BTIndexScan(ColumnarFile columnarFile, OutputTupleAttributes outputTupleAttributes, BitmapType bitmapType) {
 
         this.outputTupleAttributes = outputTupleAttributes;
         this.columnarFile = columnarFile;
@@ -66,11 +67,7 @@ public class BTIndexScan {
                 rids.add(new RID());
 
                 int colNo = condExpr.operand1.symbol.offset-1;
-                scans.add(new BitmapIndexScan(
-                        columnarFile.getColumnFile(colNo),
-                        columnarFile,
-                        condExpr,
-                        BitmapType.CBITMAP));
+                scans.add(getScan(colNo, condExpr, bitmapType));
                 condExpr = condExpr.next;
             }
 
@@ -140,10 +137,25 @@ public class BTIndexScan {
 
 
     public void closeScan() {
-        for(BitmapIndexScan scan: scans) {
-            scan.closeScan();
+        for(BooleanScan scan: scans) {
+            scan.close();
         }
 
         tidFileScan.closescan();
+    }
+
+    public BooleanScan getScan(int colNo, CondExpr condExpr,BitmapType bitmapType) {
+
+        ColumnFile columnFile =  columnarFile.getColumnFile(colNo);
+
+        if (columnFile.hasCBitmap() && bitmapType == BitmapType.CBITMAP) {
+            return new BitmapIndexScan(columnFile, columnarFile, condExpr, BitmapType.CBITMAP);
+        }
+
+        if (columnFile.hasBitmap() && bitmapType == BitmapType.BITMAP) {
+            return new BitmapIndexScan(columnFile, columnarFile, condExpr, BitmapType.BITMAP);
+        }
+
+        return new BooleanColumnScan(columnFile, columnarFile, condExpr);
     }
 }
