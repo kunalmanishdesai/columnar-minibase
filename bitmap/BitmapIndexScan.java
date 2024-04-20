@@ -1,19 +1,17 @@
 package bitmap;
 
-import columnar.ColumnFile;
-import columnar.ColumnarFile;
-import columnar.ValueInt;
-import columnar.ValueString;
+import columnar.*;
 import global.AttrOperator;
 import global.AttrType;
 import global.RID;
 import global.ValueClass;
+import index.BooleanScan;
 import iterator.CondExpr;
 
 import java.util.List;
 import java.util.Objects;
 
-public class BitmapIndexScan {
+public class BitmapIndexScan implements BooleanScan {
 
     private final ColumnarFile columnarFile;
 
@@ -21,7 +19,6 @@ public class BitmapIndexScan {
     private BMFileScan scan1 = null;
 
     private BMFileScan scan0 = null;
-    private final String bitmapName;
 
     private final RID rid = new RID();
 
@@ -30,7 +27,7 @@ public class BitmapIndexScan {
 
 
     public BitmapIndexScan(ColumnFile columnFile, ColumnarFile columnarFile, CondExpr condExpr, BitmapType bitmapType) {
-        this.bitmapName = BitmapUtil.getBitmapHeader(columnFile,bitmapType);
+        String bitmapName = BitmapUtil.getBitmapHeader(columnFile, bitmapType);
         this.columnarFile = columnarFile;
 
         AttrType attrType = columnarFile.getColumnFile(condExpr.operand1.symbol.offset-1).getAttrType();
@@ -195,7 +192,7 @@ public class BitmapIndexScan {
         }
     }
 
-    public void closeScan() {
+    public void close() {
 //        tidFileScan.closescan();
         if (scan1 != null) {
             scan1.closeScan();
