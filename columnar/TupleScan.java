@@ -34,7 +34,7 @@ public class TupleScan {
         n_out_flds = outputTupleAttributes.getProdSpec().length;
         Jtuple =  new Tuple();
         try {
-            TupleUtils.setup_op_tuple(Jtuple, new AttrType[n_out_flds], columnarFile.getAttrTypes(), columnarFile.getNumColumns(), new short[] {30,30,30}, outputTupleAttributes.getProdSpec(), n_out_flds);
+            TupleUtils.setup_op_tuple(Jtuple, new AttrType[n_out_flds], columnarFile.getAttrTypes(), columnarFile.getNumColumns(), new short[] {30,30,30,30,30,30}, outputTupleAttributes.getProdSpec(), n_out_flds);
         } catch (IOException | TupleUtilsException | InvalidRelation e) {
             throw new RuntimeException("Error setting output tuple",e);
         }
@@ -67,7 +67,7 @@ public class TupleScan {
 
                 Tuple oTuple = new Tuple();
                 try {
-                    oTuple.setHdr((short) columnarFile.getNumColumns(), columnarFile.getAttrTypes(), new short[] {30,30,30}) ;
+                    oTuple.setHdr((short) columnarFile.getNumColumns(), columnarFile.getAttrTypes(), new short[] {30,30,30,30,30,30}) ;
                 } catch (IOException | InvalidTypeException | InvalidTupleSizeException e) {
                     throw new RuntimeException("Error setting header for otuple",e);
                 }
@@ -111,7 +111,7 @@ public class TupleScan {
 
                 Tuple oTuple = new Tuple();
                 try {
-                    oTuple.setHdr((short) columnarFile.getNumColumns(), columnarFile.getAttrTypes(), new short[] {30,30,30}) ;
+                    oTuple.setHdr((short) columnarFile.getNumColumns(), columnarFile.getAttrTypes(), new short[] {30,30,30,30,30,30}) ;
                 } catch (IOException | InvalidTypeException | InvalidTupleSizeException e) {
                     throw new RuntimeException("Error setting header for otuple",e);
                 }
