@@ -41,6 +41,13 @@ case "$last_arg" in
             echo "Compilation failed. Exiting."
             exit 1
         fi
-        $JAVA BMScan.java "$rest_args" ;;
+        $JAVA BMScan.java "$rest_args" "BITMAP" ;;
+    "CBITMAP")
+            $JAVAC BMScan.java
+            if [ $? -ne 0 ]; then
+                echo "Compilation failed. Exiting."
+                exit 1
+            fi
+            $JAVA BMScan.java "$rest_args" "CBITMAP" ;;
     *)  echo "Unknown input. Exiting." ;;
 esac
