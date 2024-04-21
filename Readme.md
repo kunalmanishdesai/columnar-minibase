@@ -10,6 +10,8 @@
 ./query "testdb" "test1" "[A,B,C,D]" "{(A = Washington) OR (B = Washington}" "20" "FILESCAN"
 
 ./index "testdb" "test1" "A" "BTREE"
+./index "testdb" "test1" "B" "BTREE"
+./index "testdb" "test1" "C" "BTREE"
 
 ./index "testdb" "test1" "A" "BITMAP"
 ./index "testdb" "test1" "B" "BITMAP"
