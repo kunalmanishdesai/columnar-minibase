@@ -2,6 +2,7 @@ package commands;
 
 import bufmgr.*;
 import columnar.ColumnarFile;
+import diskmgr.PCounter;
 import global.AttrType;
 import global.SystemDefs;
 import global.TID;
@@ -68,6 +69,7 @@ public class BatchInsert {
     }
 
     void execute(BufferedReader br) {
+
         int position = columnarFile.getRecordCount();
         int startPosition = position;
         String line;
@@ -83,6 +85,7 @@ public class BatchInsert {
         columnarFile.updateBitmapIndex(startTID);
 
         System.out.println("Total number of records (" +position + " - " +startPosition+") entered: " + (position-startPosition));
+
     }
 
     private void insertTuple(int position,int startPosition,String line) {
@@ -152,9 +155,13 @@ public class BatchInsert {
 
             String headerLine = br.readLine();
             BatchInsert batchInsert = new BatchInsert(columnarFileName, numColumns,headerLine);
+
+            PCounter.initialize();
             batchInsert.execute(br);
 
             SystemDefs.JavabaseBM.flushAllPages();
+
+            PCounter.print();
 
         } catch (IOException e) {
             throw new RuntimeException("Error reading file",e);

@@ -4,6 +4,7 @@ import bitmap.BitmapType;
 import columnar.BTIndexScan;
 import columnar.BTreeColumnarScan;
 import columnar.Utils;
+import diskmgr.PCounter;
 import heap.Tuple;
 import iterator.CondExpr;
 import iterator.TupleScanInterface;
@@ -84,7 +85,10 @@ public class BTScan extends ScanCommand {
     public static void main(String[] command) {
 //        String test = "testdb test1 [A,B,C,D,E] {(A = Iowa) AND (B = Zimbabwe)} 12";
         String test = command[0];
+
+        PCounter.initialize();
         BTScan btScan = new BTScan(test);
         btScan.execute();
+        PCounter.print();
     }
 }

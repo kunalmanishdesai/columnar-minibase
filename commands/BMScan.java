@@ -3,6 +3,7 @@ package commands;
 import bitmap.BitmapType;
 import columnar.BTIndexScan;
 import columnar.Utils;
+import diskmgr.PCounter;
 import heap.Tuple;
 
 public class BMScan extends ScanCommand {
@@ -39,5 +40,6 @@ public class BMScan extends ScanCommand {
 //        BitmapType bitmapType = BitmapType.CBITMAP;
         BMScan bmScan = new BMScan(test,bitmapType);
         bmScan.execute();
+        PCounter.print();
     }
 }
