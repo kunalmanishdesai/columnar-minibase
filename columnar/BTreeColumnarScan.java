@@ -36,7 +36,7 @@ public class BTreeColumnarScan implements TupleScanInterface {
         n_out_flds = outputTupleAttributes.getProdSpec().length;
         Jtuple =  new Tuple();
         try {
-            TupleUtils.setup_op_tuple(Jtuple, new AttrType[n_out_flds], columnarFile.getAttrTypes(), columnarFile.getNumColumns(), new short[] {30,30,30,30,30,30}, outputTupleAttributes.getProdSpec(), n_out_flds);
+            TupleUtils.setup_op_tuple(Jtuple, new AttrType[n_out_flds], columnarFile.getAttrTypes(), columnarFile.getNumColumns(), new short[] {30,30,30,30,30,30,30,30,30,30,30,30}, outputTupleAttributes.getProdSpec(), n_out_flds);
         } catch (IOException | TupleUtilsException | InvalidRelation e) {
             throw new RuntimeException("Error setting output tuple",e);
         }
@@ -88,7 +88,7 @@ public class BTreeColumnarScan implements TupleScanInterface {
         n_out_flds = outputTupleAttributes.getProdSpec().length;
         Jtuple =  new Tuple();
         try {
-            TupleUtils.setup_op_tuple(Jtuple, new AttrType[n_out_flds], columnarFile.getAttrTypes(), columnarFile.getNumColumns(), new short[] {30,30,30,30,30,30}, outputTupleAttributes.getProdSpec(), n_out_flds);
+            TupleUtils.setup_op_tuple(Jtuple, new AttrType[n_out_flds], columnarFile.getAttrTypes(), columnarFile.getNumColumns(), new short[] {30,30,30,30,30,30,30,30,30,30,30,30}, outputTupleAttributes.getProdSpec(), n_out_flds);
         } catch (IOException | TupleUtilsException | InvalidRelation e) {
             throw new RuntimeException("Error setting output tuple",e);
         }

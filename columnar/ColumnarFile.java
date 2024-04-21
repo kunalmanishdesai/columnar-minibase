@@ -147,7 +147,7 @@ public class ColumnarFile {
 
         Tuple oTuple = new Tuple();
         try {
-            oTuple.setHdr((short) getNumColumns(), getAttrTypes(), new short[] {30,30,30,30,30,30}) ;
+            oTuple.setHdr((short) getNumColumns(), getAttrTypes(), new short[] {30,30,30,30,30,30,30,30,30,30,30,30}) ;
         } catch (IOException | InvalidTypeException | InvalidTupleSizeException e) {
             throw new RuntimeException("Error setting header for otuple",e);
         }
