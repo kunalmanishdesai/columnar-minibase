@@ -32,8 +32,8 @@ public class ColumnScanCommand extends ScanCommand {
     //COLUMNDBNAME COLUMNARFILENAME [TARGETCOLUMNNAMES] VALUECONSTRAINT NUMBUF ACCESSTYPE
     public static void main(String[] command) {
 
-        String test = "testdb test1 [A,B,C,D] {(A = Maryland)} 50";
-//        String test = command[0];
+//        String test = "testdb test1 [A,B,C,D] {(A = Maryland)} 50";
+        String test = command[0];
 
         PCounter.initialize();
         ColumnScanCommand columnScan = new ColumnScanCommand(test);
