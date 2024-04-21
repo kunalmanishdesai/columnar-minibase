@@ -320,10 +320,10 @@ public class ColumnarFile {
 
             deleteFileScan.closescan();
 
-            deleteFile.deleteFile();
-            deleteFile = new Heapfile(this.name+".idr");
-
             if (count != 0) {
+                deleteFile.deleteFile();
+                deleteFile = new Heapfile(this.name+".idr");
+                
                 for(ColumnFile columnFile : columnFiles) {
 
                     if (columnFile.hasBtree()) {
