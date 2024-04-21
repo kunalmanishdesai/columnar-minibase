@@ -2,6 +2,7 @@ package commands;
 
 import columnar.TupleScan;
 import columnar.Utils;
+import diskmgr.PCounter;
 import heap.Tuple;
 
 public class FileScan extends ScanCommand {
@@ -32,7 +33,10 @@ public class FileScan extends ScanCommand {
 
 //        String test = "testdb test1 [A,B,C,D,E] {(C = 2)} 12";
         String test = command[0];
+
+        PCounter.initialize();
         FileScan fileScan = new FileScan(test);
         fileScan.execute();
+        PCounter.print();
     }
 }

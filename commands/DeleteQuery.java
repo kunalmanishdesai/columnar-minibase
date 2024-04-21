@@ -3,6 +3,7 @@ package commands;
 import bufmgr.*;
 import columnar.ColumnarFile;
 import columnar.TupleScan;
+import diskmgr.PCounter;
 import global.SystemDefs;
 import heap.Tuple;
 import iterator.OutputTupleAttributes;
@@ -53,8 +54,11 @@ public class DeleteQuery {
 //        String test = "testdb test1 {(C = 4)} 20 true";
 
         String test = command[0];
+
+        PCounter.initialize();
         DeleteQuery deleteQuery = new DeleteQuery(test);
         deleteQuery.execute();
+        PCounter.print();
 
         try {
             SystemDefs.JavabaseBM.flushAllPages();

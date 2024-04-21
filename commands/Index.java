@@ -4,6 +4,7 @@ import bitmap.BitmapType;
 import bitmap.BitmapUtil;
 import bufmgr.*;
 import columnar.ColumnarFile;
+import diskmgr.PCounter;
 import global.SystemDefs;
 
 import java.io.IOException;
@@ -27,6 +28,7 @@ public class Index {
 
         SystemDefs sysdef = new SystemDefs( dbpath, 0, 300, "Clock" );
 
+        PCounter.initialize();
         ColumnarFile columnarFile = new ColumnarFile(columnarFileName);
         int colNo = columnarFile.getColumnNo(columnName);
         if(indexType.equals("BITMAP")) {
@@ -51,5 +53,6 @@ public class Index {
         }
 
         System.out.println(indexType + " Index created on column " + columnName);
+        PCounter.print();
     }
 }
