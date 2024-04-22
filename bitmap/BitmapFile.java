@@ -97,18 +97,6 @@ public class BitmapFile implements GlobalConst {
         scan.closescan();
         headerFile.deleteFile();
     }
-    
-    private BMPage pinPage(PageId pageno) throws PinPageException {
-      try {
-        BMPage page=new BMPage();
-        SystemDefs.JavabaseBM.pinPage(pageno, page, false/*Rdisk*/);
-        return page;
-      }
-      catch (Exception e) {
-	e.printStackTrace();
-	throw new PinPageException(e,"");
-      }
-    }
   
     private void unpinPage(PageId pageno, boolean isDirty) throws UnpinPageException{ 
       try {
