@@ -37,6 +37,7 @@ public class BMScan extends ScanCommand {
         String test = command[0];
         BitmapType bitmapType = BitmapType.valueOf(command[1]);
 
+        PCounter.initialize();
 //        BitmapType bitmapType = BitmapType.CBITMAP;
         BMScan bmScan = new BMScan(test,bitmapType);
         bmScan.execute();
