@@ -33,12 +33,11 @@ public class BMScan extends ScanCommand {
 
 
     public static void main(String[] command) {
-//        String test = "testdb test1 [A,B,C,D] {(A > Arizona) AND ((B = Indiana)} 30";
+//        String test = "testdb test1 [A,B,C,D] {(A > Arizona) AND ((B < Indiana)} 1000";
         String test = command[0];
         BitmapType bitmapType = BitmapType.valueOf(command[1]);
-
-        PCounter.initialize();
 //        BitmapType bitmapType = BitmapType.CBITMAP;
+        PCounter.initialize();
         BMScan bmScan = new BMScan(test,bitmapType);
         bmScan.execute();
         PCounter.print();
